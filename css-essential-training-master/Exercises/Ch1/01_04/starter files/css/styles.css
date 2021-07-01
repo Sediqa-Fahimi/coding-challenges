@@ -9,6 +9,12 @@ body{
 img {
     width: 300px;
 }
+a{
+    color: #343434;
+}
+a:hover{
+    color: #EAE0CC;
+}
 /* Profile 
 ------------------------------------*/
 header{
