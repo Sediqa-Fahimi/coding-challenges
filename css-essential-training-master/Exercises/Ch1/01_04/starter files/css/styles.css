@@ -20,7 +20,10 @@ a:hover{
 header{
     background: #EAE0CC;
 }
-
+.content-wrap{
+    width: 980px;
+    margin: 0 auto;
+}
 /* Projects 
 ------------------------------------*/
 .projects{
