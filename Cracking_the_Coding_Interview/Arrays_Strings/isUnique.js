@@ -25,7 +25,7 @@ function isUnique(str){
     }
     return true;
 }
-
+//Tests:
 console.log(isUnique('personal')) //=> true
 console.log(isUnique('personel')) //=> false
 console.log(isUnique('AaBb123%#@')) //=> true

@@ -31,10 +31,11 @@ function checkPermutation(str1,str2){
     return true;
 }
 
-// console.log(checkPermutation('personal','sopernal')); // true
-// console.log(checkPermutation('leave','eave')); // false
-// console.log(checkPermutation('personel','lenosrep')); // true
-// console.log(checkPermutation('academy','Academy')); // fasle
+//tests:
+console.log(checkPermutation('personal','sopernal')); // true
+console.log(checkPermutation('leave','eave')); // false
+console.log(checkPermutation('personel','lenosrep')); // true
+console.log(checkPermutation('academy','Academy')); // fasle
 
 console.log(checkPermutationWithSort('personal','sopernal')); // true
 console.log(checkPermutationWithSort('leave','eave')); // false
