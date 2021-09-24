@@ -18,3 +18,23 @@ function selectionSort(array) {
 	}
 	return array;
 }
+
+//O(n2) time
+//O(1) space
+
+function selectionSort(array) {
+  for(let i = 0; i < array.length - 1; i++){
+		let smallestNumIdx = i;
+		for(let j = i + 1; j < array.length; j++){
+			if(array[j] < array[smallestNumIdx]) smallestNumIdx = j;
+		}
+		swap(i, smallestNumIdx, array);
+	}
+	return array;
+}
+
+function swap(i,j,array){
+	const temp = array[i];
+	array[i] = array[j];
+	array[j] = temp;
+}
