@@ -1,5 +1,5 @@
 //O(n^2) time | O(1) space 
-function selectionSort(array) {
+function selectionSortt(array) {
 	
   for(let i = 0; i < array.length; i++){
 		let smallest = array[i];
@@ -38,3 +38,6 @@ function swap(i,j,array){
 	array[i] = array[j];
 	array[j] = temp;
 }
+
+console.log(selectionSortt([4,5,1,9,0,22,3,2]));
+console.log(selectionSort([4,5,1,9,0,22,3,2]));
