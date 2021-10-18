@@ -44,3 +44,17 @@ var maxSubArray = function(nums) {
     }
     return maxSum;
 };
+
+//O(n) time | O(1) space
+// Dynamic programming - Kadane's Algorithm
+var maxSubArray = function(nums) {
+    let currentSubarraySum = nums[0];
+    let maxSubarraySum = nums[0];
+    for(let i = 1; i < nums.length; i++){
+        currentSubarraySum += nums[i];
+        maxSubarraySum = Math.max(currentSubarraySum, maxSubarraySum);
+        if(currentSubarraySum < 0) currentSubarraySum = 0;
+    }
+    
+    return maxSubarraySum;
+};
