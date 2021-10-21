@@ -21,6 +21,7 @@ var maxProduct = function(nums){
     
     for(let i = 1; i < nums.length; i++){
         let curr = nums[i];
+        
         let tempMax = Math.max(curr, maxSoFar * curr, minSoFar * curr);
         minSoFar = Math.min(curr, maxSoFar * curr, minSoFar * curr);
         
