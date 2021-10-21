@@ -21,11 +21,11 @@ var maxProduct = function(nums){
     
     for(let i = 1; i < nums.length; i++){
         let curr = nums[i];
+
+        let temp = maxSoFar * curr;
+        maxSoFar = Math.max(curr, maxSoFar * curr, minSoFar * curr);
+        minSoFar = Math.min(curr, temp, minSoFar * curr);
         
-        let tempMax = Math.max(curr, maxSoFar * curr, minSoFar * curr);
-        minSoFar = Math.min(curr, maxSoFar * curr, minSoFar * curr);
-        
-        maxSoFar = tempMax;
         
         result = Math.max(maxSoFar, result);
     }
