@@ -24,7 +24,7 @@ function MinItemIndex(nums){
     return rotationIndex;
 }
 
-// console.log(MinItemIndex([3,1,2]));
+// console.log(MinItemIndex([1,2,3,0]));
 
 //O(log n) time | O(1) space
 var search = function(nums, target) {
@@ -72,9 +72,4 @@ var search = function(nums, target) {
     return -1;
 };
 
-console.log(search([3,1,2],3)); // 0
-console.log(search([3,1,2],1)); // 1
-console.log(search([3,1,2],2)); // 2
-console.log(search([3,1,2],9)); // -1
-console.log(search([6,7,8,9,0,2],2)); // 5
-console.log(search([1,2],2)); // 1
+console.log(search([2,3,4,5,0,1],9));
