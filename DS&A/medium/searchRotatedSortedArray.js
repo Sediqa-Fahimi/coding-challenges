@@ -1,5 +1,6 @@
 //O(logn) time | O(1) space
 function MinItemIndex(nums){
+
     let left = 0;
     let right = nums.length - 1;
     let rotationIndex = 0;
@@ -21,13 +22,16 @@ function MinItemIndex(nums){
             right = mid - 1;
         }
     }
+
     return rotationIndex;
 }
 
 // console.log(MinItemIndex([1,2,3,0]));
 
+
 //O(log n) time | O(1) space
 var search = function(nums, target) {
+
     let left = 0;
     let right = nums.length - 1;
     let rotationIndex = 0;
@@ -52,6 +56,7 @@ var search = function(nums, target) {
             }
         }
     }
+
     left = 0;
     right = nums.length - 1;
 
@@ -69,7 +74,9 @@ var search = function(nums, target) {
         if(target > nums[mid]) left = mid + 1;
         if(target < nums[mid]) right = mid - 1;
     }
+
     return -1;
 };
+
 
 console.log(search([2,3,4,5,0,1],9));
