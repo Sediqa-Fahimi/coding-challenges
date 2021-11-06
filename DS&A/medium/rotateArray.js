@@ -12,23 +12,30 @@
 //     return nums;
 // };
 
+//O(n) time | O(1) space
 var rotate = function(nums, k) {
     let len = nums.length;
-    let temp;
-    let value = nums[0];
-    let newIdx = 0;
+    k = k % len;
+
+    let start = 0;
     let count = 0;
+    
     while(count < len){
-        newIdx = (newIdx + k) % len;
-        temp = nums[newIdx];
-        nums[newIdx] = value;
-        value = temp;
-        count++;
+        let current = start;
+        let prev = nums[start];
+        while(true){
+            let nextIdx = (current + k) % len;
+            let temp = nums[nextIdx];
+            nums[nextIdx] = prev;
+            prev = temp;
+            current = nextIdx;
+            count++;
+            if(current === start) break;
+        }
+        start++;
     }
     return nums;
 };
-
-
 
 console.log(rotate([1,2,3,4,5,6,7],3));
 console.log(rotate([-100,-33,0,4],2));
