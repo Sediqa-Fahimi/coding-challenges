@@ -1,82 +1,51 @@
 /*
 COLOR PALETTE
 https://coolors.co/f7fff7-343434-2f3061-ffe66d-a1c6d7
-#F7FFF7 - almost white
-#343434 - dark gray - almost black
-#2F3061 - blue dark
-#FFE66D - yellow
-#A1C6D7 - blue light
 */
 
 
 /* Global styles
 ------------------------------------*/
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 body {
-  color: #343434;
+  color: #262525;
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: 'Noto Sans', sans-serif;
 }
+h2{
+  margin: 0;
+}
+h1{
+  margin-top: 0;
+}
+
+h1, h2{
+  font-family: 'Source Sans 3', sans-serif;
+
+}
+
 img {
   width: 300px;
 }
 a {
-  color: #FFE66D;
-}
-a:hover {
+  color: rgb(212,73,80);
   text-decoration: none;
 }
-h1, h2 {
-  font-family: 'Caveat', cursive;
-  font-weight: 400;
-  margin: 0;
+a:hover{
+  text-decoration: none;
+  color: grey;
 }
-h1 {
-  font-size: 100px;
-  line-height: 1;
-}
-h2 {
-  font-size: 45px;
-}
-
-.content-wrap {
-  max-width: 800px;
-  width: 85%;
+.content-wrap{
+  width: 900px;
   margin: 0 auto;
-  padding: 60px 0;
-}
-.item-details h3 {
-  margin-bottom: 0;
-}
-.item-details h3 + p {
-  font-style: italic;
-}
-.item-details h3 ~ p {
-  margin: 0;
-}
-.divider > section {
-  overflow: hidden;
-  border-bottom: 1px dashed #343434;
-  padding: 25px 0;
-}
-.divider > section:last-of-type {
-  border: none;
+  padding: 30px 0;
 }
 
 
 /* Profile
 ------------------------------------*/
 header {
-  background: #2F3061;
+  background: #374A67;
   color: #F7FFF7;
 }
 
@@ -84,100 +53,40 @@ header {
 /* Projects
 ------------------------------------*/
 .projects {
-  background: #F7FFF7;
+  background: #A5C4D4;
+  
 }
-.projects a {
-  color: #2F3061;
-}
-.projects .btn {
-  background: #2F3061;
-  color: #F7FFF7;
+.projects .btn{
   text-decoration: none;
-  padding: 8px;
+  background: rgb(55, 74, 103);
+  color: #EAF9D9;
+  padding: 6px;
   border-radius: 4px;
   display: inline-block;
 }
-.projects .btn:hover {
-  background: rgba(47,48,97,80%);
+.projects .btn:hover{
+  background: rgba(55, 74, 103, 60%);
 }
-.project-item h3 {
-  margin-top: 0;
-}
-
-
 
 /* Work Experience
 ------------------------------------*/
 .work-experience {
-  background: #A1C6D7;
+  background: #D3C5CF;
+  
 }
-
 
 
 /* Education
 ------------------------------------*/
-.education {
-  background-image: url(../images/joanna-kosinska-unsplash.jpg);
-  background-position: top right;
-  background-size: cover;
-  padding-bottom: 100px;
-}
-.education p {
-  width: 60%;
+.education{
+  background: #EAF9D9;
+  
 }
 
 
 /* Contact Info
 ------------------------------------*/
 footer {
-  background: #343434;
+  background: #83B6C3;
   color: #F7FFF7;
-}
-.contact-list {
-  list-style-type: none;
-  padding: 0;
-}
-.contact-list a {
-  padding: 5px;
-  display: inline-block;
-}
-
-
-/* Responsive
-------------------------------------*/
-@media screen and (min-width: 750px) {
-
-  header, footer {
-    text-align: center;
-  }
-
-  .project-item img {
-    float: left;
-    margin-right: 20px;
-  }
-
-  .job-item {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    column-gap: 20px;
-  }
-
-  .contact-list {
-    display: flex;
-    justify-content: center;
-  }
-  .contact-list a {
-    padding: 15px;
-  }
-}
-
-@media screen and (max-width: 749px) {
-  h1 {
-    font-size: 75px;
-    line-height: 0.9;
-    margin-bottom: 20px;
-  }
-  h2 {
-    line-height: 1;
-  }
 }
