@@ -79,6 +79,17 @@ header {
 .projects .btn:hover{
   background: rgba(55, 74, 103, 60%);
 }
+.project-item{
+  overflow: hidden;
+  padding: 20px 0;
+}
+.project-item h3{
+  margin-top: 0;
+}
+.project-item img{
+  float: left;
+  margin-right: 20px;
+}
 
 /* Work Experience
 ------------------------------------*/
