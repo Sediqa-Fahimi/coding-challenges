@@ -27,7 +27,7 @@ h2{
   font-size: 25px;
 }
 h1{
-  font-size: 40px;
+  font-size: 45px;
   line-height: 1;
 }
 
@@ -59,6 +59,7 @@ a:hover{
 header {
   background: #374A67;
   color: #F7FFF7;
+  text-align: center;
 }
 
 
@@ -112,4 +113,14 @@ header {
 footer {
   background: #83B6C3;
   color: #F7FFF7;
+  text-align: center;
+}
+.contact-list{
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+.contact-list a{
+  padding: 15px;
 }
