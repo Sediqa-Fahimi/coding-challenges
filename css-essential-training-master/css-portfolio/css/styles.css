@@ -98,7 +98,11 @@ header {
   background: #D3C5CF;
   
 }
-
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
 
 /* Education
 ------------------------------------*/
