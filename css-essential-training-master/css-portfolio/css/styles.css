@@ -75,7 +75,6 @@ a:hover{
 header {
   background: #374A67;
   color: #F7FFF7;
-  text-align: center;
 }
 
 
@@ -102,10 +101,7 @@ header {
 .project-item h3{
   margin-top: 0;
 }
-.project-item img{
-  float: left;
-  margin-right: 20px;
-}
+
 
 /* Work Experience
 ------------------------------------*/
@@ -113,11 +109,7 @@ header {
   background: #D3C5CF;
   
 }
-.grid-container{
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
-}
+
 
 /* Education
 ------------------------------------*/
@@ -137,14 +129,36 @@ header {
 footer {
   background: #83B6C3;
   color: #F7FFF7;
-  text-align: center;
 }
 .contact-list{
   padding: 0;
   list-style-type: none;
-  display: flex;
-  justify-content: center;
 }
 .contact-list a{
   padding: 15px;
+}
+
+
+/* Responsive
+------------------------------------*/
+@media screen and (min-width: 920px){
+  .project-item img{
+    float: left;
+    margin-right: 20px;
+  }
+  .grid-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 700px){
+  header, footer{
+    text-align: center;
+  }
+  .contact-list{
+    display: flex;
+    justify-content: center;
+  }
+
 }
