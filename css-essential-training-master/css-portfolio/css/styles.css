@@ -44,7 +44,13 @@ h1, h2{
 .item-details h3 ~ p{
   margin: 0;
 }
-
+.devider > section{
+  border-bottom: 1px dashed #343434;
+  padding: 20px 0;
+}
+.devider > section:last-of-type{
+  border-bottom: none;
+}
 img {
   width: 300px;
 }
@@ -91,7 +97,6 @@ header {
 }
 .project-item{
   overflow: hidden;
-  padding: 20px 0;
 }
 .project-item h3{
   margin-top: 0;
