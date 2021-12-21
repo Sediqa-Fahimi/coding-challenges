@@ -6,7 +6,32 @@
 	<link href="styles.css" rel="stylesheet" type="text/css">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<style>
-
+		.container{
+			display: grid;
+			grid-template-columns: 1fr 2fr 2fr 1fr;
+			grid-template-rows: 1fr 1fr 2fr 1fr;
+		}
+		.white{
+			grid-column: 1 / 2;
+			grid-row: 1 / 2;
+		}
+		.red{
+			grid-column: 2 / span 2;
+		}
+		.purple{
+			grid-column: 4 / 5;
+			grid-row: 1 / 5;
+		}
+		.orange{
+			grid-row: 2 / 5;
+		}
+		.yellow{
+			grid-row: 2 / span 2;
+		}
+		.blue{
+			grid-row: 4 / 5;
+			grid-column: 2 / 4;
+		}
 
 	</style>
 </head>
