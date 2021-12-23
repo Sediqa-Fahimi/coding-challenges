@@ -7,25 +7,25 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<style>
 	header {
-		width: 1000px;
-	}
-	.image1 {
-		float: left;
+		max-width: 1000px;
+		display: flex;
+		justify-content: space-between;
 	}
 	.image2 {
-		float: right;
-	}
+		order: 1;
+	} 
 	.container {
-		width: 1000px;
-		clear: both;
+		max-width: 1000px;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
 	}
 	.links {
-		float: right;
 		width: 300px;
+		align-self: flex-start;
 	}
 	.content {
-		float: left;
-		width: 670px;
+		max-width: 670px;
 	}
 	</style>
 </head>
