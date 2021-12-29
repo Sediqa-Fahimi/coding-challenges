@@ -6,9 +6,50 @@
 	<link href="styles.css" rel="stylesheet" type="text/css">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<style>
-
-
-
+		.container{
+			display: grid;
+			grid-gap: 20px;
+			grid-template-areas: 
+				"header"
+				"main"
+				"links"
+				"ads"
+				"footer";
+		}
+		.main-header{
+			grid-area: header;
+		}
+		.main-content{
+			grid-area: main;
+		}
+		.related-links{
+			grid-area: links;
+		}
+		.ads{
+			grid-area: ads;
+		}
+		.main-footer{
+			grid-area: footer;
+		}
+		@media (min-width: 500px){
+			.container{
+				grid-template-columns: repeat(3,1fr);
+				grid-template-areas: 
+					"header header header"
+					"main main links"
+					"main main ads"
+					"footer footer footer";
+			}
+		}
+		@media (min-width: 800px){
+			.container{
+				grid-template-columns: repeat(4, 1fr);
+				grid-template-areas: 
+					"header header header header"
+					"links main main ads"
+					"footer footer footer footer";
+			}
+		}
 	</style>
 </head>
 <body>
