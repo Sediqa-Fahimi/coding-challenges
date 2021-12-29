@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>05_04 Exercise - End</title>
+	<title>05_04 Exercise - Start</title>
 	<meta charset="utf-8">
 	<link href="styles.css" rel="stylesheet" type="text/css">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<style>
-	@media (min-width: 600px) {
-		.container {
-			display: flex;
+		@media (min-width: 550px){
+			.container{
+				display: flex;
+			}
+			.main{
+				flex-grow: 2;
+			}
+			.related{
+				order: -1;
+				flex-grow: 1;
+			}
+			.ads{
+				order: 1;
+				flex-grow: 1;
+			}
 		}
-		.main {
-			order: 2;
-			flex-grow: 2;
-		}
-		.related {
-			order: 1;
-			flex-grow: 1;
-		}
-		.ads {
-			order: 3;
-			flex-grow: 1;
-		}
-	}
 
 
 	</style>
