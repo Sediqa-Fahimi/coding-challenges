@@ -1,0 +1,295 @@
+
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+body {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
+header {
+  margin: 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+footer{
+  padding-top: 12px;
+  height: 400px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+
+  background-image: url(https://assets.codepen.io/296057/lil-bv-bkgd.jpg);
+  background-position: center;
+}
+
+.logo {
+  width: 50%;
+}
+.hamburger img,
+.close img {
+  width: 36px;
+  height: 36px;
+}
+nav {
+  padding: 1rem;
+  position: absolute;
+  /* a higher z-index put navbar above hamburger */
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  /* animate slide up/down */
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+
+/* :target is called when its anchor id #navbar is called by clicking on the hamburger which has href="#navbar" */
+
+nav:target {
+  transform: translateY(0);
+}
+
+nav ul {
+  flex-basis: 80%;
+}
+nav a {
+  display: block;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+}
+nav a:hover {
+  color: #f0c808;
+}
+
+@media (min-width: 600px) {
+  .logo {
+    width: 35%;
+  }
+ nav {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: auto;
+    transform: none;
+    transition: none;
+    background-color: transparent;
+    display: block;
+  }
+  .hamburger,
+  .close {
+    display: none;
+  }
+  header {
+    margin: 2rem 0 0 0;
+    text-align: center;
+    display: block;
+  }
+  nav {
+    padding: 0;
+    margin: 0;
+  }
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-top: 2rem;
+    background-color: #00bbf3;
+    border-radius: 0rem;
+  }
+}
+@media (min-width: 1000px) {
+  header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+ .logo {
+    width: 25%;
+  }
+  header nav {
+    flex-basis: 60%;
+  }
+  nav ul {
+    border-radius: 2rem;
+  }
+}
+
+/* keeps images flexible within the grid */
+img {
+    width: 100%;
+    height: auto;
+}
+ h1 {
+    font-size: 4rem;
+    color: #FF715B;
+    text-align: center;
+}
+h2 {
+  color: #ff715b;
+  font-weight: 600;
+  text-align: center;
+  font-size: 3rem;
+}
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    grid-gap: 0.5rem;
+}
+
+.mainimg {
+    grid-row: 1/3;
+}
+
+.secondimg {
+    grid-column: 2/4;
+}
+
+.grid>figure {
+    position: relative;
+}
+
+.grid figcaption {
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 100%;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+}
+
+.grid figcaption a {
+    text-decoration: none;
+    color: #00BFF3;
+    font-weight: 600;
+    display: block;
+    padding: 2rem 0;
+}
+
+.grid figcaption a:hover {
+    color: #FF715B;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.row li {
+  border-radius: 50%;
+  background: linear-gradient(
+    176deg,
+    rgba(255, 246, 207, 1) 35%,
+    rgba(254, 206, 122, 1) 100%
+  );
+  margin-bottom: 3rem;
+  text-align: center;
+  font-size: 2rem;
+  color: #ff715b;
+  flex-basis: 30%;
+}
+
+
+@media (max-width: 850px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-gap: 0.5rem;
+    }
+    .mainimg {
+        grid-column: 1/3;
+        grid-row: 2/3;
+    }
+    .secondimg {
+        grid-column: 1/3;
+        grid-row: 1/2;
+    }
+    .grid .secondimg figcaption {
+        bottom: 200px;
+    }
+    .products {
+        grid-column: 1/3;
+        grid-row: 7/8;
+    }
+     h2 {
+        font-size: 2rem;
+    }
+    .row {
+        justify-content: space-around;
+    }
+    .row li {
+        flex-basis: 40%;
+        font-size: 1.5rem;
+    }
+    footer{
+      height: 300px;
+      background-size: cover;
+  }
+}
+
+@media (max-width: 550px) {
+    .grid {
+        display: block;
+    }
+    .grid .secondimg figcaption {
+        bottom: 60px;
+    }
+    .row li {
+        flex-basis: 60%;
+    }
+  footer{
+    height: 250px;
+  }
+}
