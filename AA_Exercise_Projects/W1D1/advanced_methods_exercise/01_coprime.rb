@@ -53,21 +53,25 @@
 #    return num_factors
 # end
 
-def coprime?(num1, num2) # O(n) time | O(n) space where n is the smaller number.
-    if num1 < num2
-        smaller = num1
-        bigger = num2
-    else
-        smaller = num2
-        bigger = num1
-    end
+# def coprime?(num1, num2) # O(n) time | O(n) space where n is the smaller number.
+#     if num1 < num2
+#         smaller = num1
+#         bigger = num2
+#     else
+#         smaller = num2
+#         bigger = num1
+#     end
 
-    (1..smaller).each do |num|     
-        if num != 1 && bigger % num == 0 && smaller % num == 0
-            return false
-        end
-    end
-    return true
+#     (2..smaller).each do |num|     
+#         if bigger % num == 0 && smaller % num == 0
+#             return false
+#         end
+#     end
+#     return true
+# end
+
+def coprime?(num1, num2)
+    (2..num1).none? { |divisor| num1 % divisor == 0 && num2 % divisor == 0}
 end
 
 # 12=[1,2,3,4,6,12]
