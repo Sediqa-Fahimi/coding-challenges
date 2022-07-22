@@ -2,6 +2,17 @@
 # The method should return true if there is at least 1 person with an age of 18 or greater.
 # The method should return false otherwise.
 
+# def adult_in_group?(people)
+#     return people.any? { |person| person[:age] >= 18}
+# end
+
+def adult_in_group?(people) # O(n) time, O(1) space
+    people.each do |person|
+        return true if person[:age] >= 18
+    end
+    return false
+end
+
 
 people_1 = [
     {name: "Jack", age: 17},
