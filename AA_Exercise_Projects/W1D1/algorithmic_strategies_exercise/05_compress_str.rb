@@ -21,25 +21,48 @@
 #     return compressed + (count > 1 ? count.to_s : "") + char
 # end
 
+# def compress_str(str)
+#     compressed = []
+#     arr = str.split("")
+
+#     i = 1
+#     char = arr[0]
+#     count = 1
+#     while i < arr.length
+#         if arr[i] == char
+#             count += 1
+#         else 
+#             compressed.push( (count > 1 ? count.to_s : "") , char)
+#             count = 1
+#             char = arr[i]
+#         end
+#         i += 1
+#     end
+
+#     return compressed.push((count > 1 ? count.to_s : ""), char).join()
+# end
+
 def compress_str(str)
     compressed = []
     arr = str.split("")
-
-    i = 1
-    char = arr[0]
-    count = 1
+    i = 0
     while i < arr.length
-        if arr[i] == char
+        char = arr[i]
+        count = 0
+        while char == arr[i]
             count += 1
-        else 
-            compressed.push( (count > 1 ? count.to_s : "") , char)
-            count = 1
-            char = arr[i]
+            i += 1
         end
-        i += 1
+
+        if count > 1
+            compressed.push(count.to_s , char)
+        else
+            compressed.push(char)
+        end
+
     end
 
-    return compressed.push((count > 1 ? count.to_s : ""), char).join()
+    compressed.join()
 end
 p compress_str("aaabbc")        # => "3a2bc"
 p compress_str("xxyyyyzz")      # => "2x4y2z"
