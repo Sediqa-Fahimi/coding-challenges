@@ -1,6 +1,7 @@
 # Run `bundle exec rspec` and satisy the specs.
 # You should implement your methods in this file.
 # Feel free to use the debugger when you get stuck.
+require "byebug"
 
 def largest_prime_factor(num)
     i = num
@@ -45,3 +46,15 @@ def dupe_indices(arr)
     end
     dup_indices.select! {|k,v| v.length >= 2}
 end
+
+def ana_array(arr1, arr2)
+    arr1_elements = {}
+    arr1.each {|ele| arr1_elements[ele] = true}
+   
+    arr2_elements = {}
+    arr2.each {|ele| arr2_elements[ele] = true}
+  
+    arr1_elements == arr2_elements
+end
+
+p ana_array(["i","c","e","m","a","n"], ["c","i","n","e","m","a"])
