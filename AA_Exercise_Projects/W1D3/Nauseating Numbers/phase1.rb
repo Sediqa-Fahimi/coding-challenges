@@ -52,6 +52,22 @@ end
 # p rampant_repeats('misispi', {'s'=>2, 'p'=>2})          # 'mississppi'
 # p rampant_repeats('faarm', {'e'=>3, 'a'=>2})            # 'faaaarm'
 
-def perfect_square?(num)
-    
+def perfect_square(num)
+    (1..num).each do |n|
+        if n * n == num
+            return true
+        end
+    end
+    false
+    # (1..num).any? {|n| n * n == num}
 end
+
+p perfect_square(1)     # true
+p perfect_square(4)     # true
+p perfect_square(64)    # true
+p perfect_square(100)   # true
+p perfect_square(169)   # true
+p perfect_square(2)     # false
+p perfect_square(40)    # false
+p perfect_square(32)    # false
+p perfect_square(50)    # false
