@@ -57,13 +57,7 @@ def mutual_factors(*args)
     common_factors
 end
 def factors(num)
-    divisors = []
-    (1..num).each do |n|
-        if num % n == 0
-            divisors << n 
-        end
-    end
-    divisors
+    (1..num).select {|i| num % i == 0}
 end
 
 # p mutual_factors(50, 30)            # [1, 2, 5, 10]
