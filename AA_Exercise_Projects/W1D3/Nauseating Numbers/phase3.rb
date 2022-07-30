@@ -1,3 +1,5 @@
+require "byebug"
+
 def matrix_addition_reloaded(*matrices)
     height = matrices[0].length
     width = matrices[0][0].length
@@ -7,6 +9,21 @@ def matrix_addition_reloaded(*matrices)
         end
     end
 
+    addition = Array.new(height) {[0] * width}
+    
+    
+    matrices[0].each_with_index do |row, i|
+        
+        row.each_with_index do |col, j|
+            sum = 0
+            matrices.each do |matrix|
+                sum += matrix[i][j]
+            end
+            addition[i][j] = sum
+        end
+    end
+    
+    addition
 end
 
 matrix_a = [[2,5], [4,7]]
