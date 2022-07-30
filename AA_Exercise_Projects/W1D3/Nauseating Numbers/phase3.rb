@@ -1,30 +1,50 @@
 require "byebug"
-
-def matrix_addition_reloaded(*matrices)
-    height = matrices[0].length
-    width = matrices[0][0].length
-    matrices.each do |matrix|
-        if matrix.length != height || matrix[0].length != width
-            return nil
+def matrix_addition(matrix1, matrix2)
+    new_matrix = Array.new(matrix1.length) {Array.new(matrix1[0].length)}
+    matrix1.each_with_index do |sub_array, i|
+        sub_array.each_with_index do |num, j|
+            new_matrix[i][j] = matrix1[i][j] + matrix2[i][j]
         end
-    end
-
-    addition = Array.new(height) {[0] * width}
-    
-    
-    matrices[0].each_with_index do |row, i|
-        
-        row.each_with_index do |col, j|
-            sum = 0
-            matrices.each do |matrix|
-                sum += matrix[i][j]
-            end
-            addition[i][j] = sum
-        end
-    end
-    
-    addition
+    end 
+    new_matrix
 end
+def matrix_addition_reloaded(*matrices)
+    matrix = matrices.first
+    height = matrix.length
+    width = matrix[0].length
+
+    empty_matrix = Array.new(height) {[0] * width}
+
+    matrices.inject(empty_matrix) do |m1,m2|
+        return nil if m2.length != height || m2[0].length != width
+        matrix_addition(m1,m2)
+    end
+end
+# def matrix_addition_reloaded(*matrices)
+#     height = matrices[0].length
+#     width = matrices[0][0].length
+#     matrices.each do |matrix|
+#         if matrix.length != height || matrix[0].length != width
+#             return nil
+#         end
+#     end
+
+#     addition = Array.new(height) {[0] * width}
+    
+    
+#     matrices[0].each_with_index do |row, i|
+        
+#         row.each_with_index do |col, j|
+#             sum = 0
+#             matrices.each do |matrix|
+#                 sum += matrix[i][j]
+#             end
+#             addition[i][j] = sum
+#         end
+#     end
+    
+#     addition
+# end
 
 matrix_a = [[2,5], [4,7]]
 matrix_b = [[9,1], [3,0]]
@@ -79,31 +99,51 @@ end
 # ]) # false
 
 def squaragonal?(matrix)
-    
+    left_right = true
+    right_left = true
+    len = matrix.length
+    (0...len).each do |i|
+        if matrix[i][i] != matrix[0][0]
+            left_right = false
+            break
+        else
+            left_right = true
+        end
+    end
+    (0...len).each do |i|
+        if matrix[i][len-i-1] != matrix[0][len-1]
+            right_left = false
+            break
+        else
+            right_left = true
+        end
+    end
+
+    left_right || right_left
 end
 
-p squaragonal?([
-    [:x, :y, :o],
-    [:x, :x, :x],
-    [:o, :o, :x],
-]) # true
+# p squaragonal?([
+#     [:x, :y, :o],
+#     [:x, :x, :x],
+#     [:o, :o, :x],
+# ]) # true
 
-p squaragonal?([
-    [:x, :y, :o],
-    [:x, :o, :x],
-    [:o, :o, :x],
-]) # true
+# p squaragonal?([
+#     [:x, :y, :o],
+#     [:x, :o, :x],
+#     [:o, :o, :x],
+# ]) # true
 
-p squaragonal?([
-    [1, 2, 2, 7],
-    [1, 1, 6, 7],
-    [0, 5, 1, 7],
-    [4, 2, 9, 1],
-]) # true
+# p squaragonal?([
+#     [1, 2, 2, 7],
+#     [1, 1, 6, 7],
+#     [0, 5, 1, 7],
+#     [4, 2, 9, 1],
+# ]) # true
 
-p squaragonal?([
-    [1, 2, 2, 5],
-    [1, 6, 5, 0],
-    [0, 2, 2, 7],
-    [5, 2, 9, 7],
-]) # false
+# p squaragonal?([
+#     [1, 2, 2, 5],
+#     [1, 6, 5, 0],
+#     [0, 2, 2, 7],
+#     [5, 2, 9, 7],
+# ]) # false
