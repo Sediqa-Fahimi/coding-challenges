@@ -149,7 +149,20 @@ end
 # ]) # false
 
 def pascals_triangle(num)
-
+    pas_triangle = [[1]]
+    while pas_triangle.length <= num
+        last_arr = pas_triangle[-1]
+        new_arr = [1]
+        i = 0 
+        while i < last_arr.length
+            if i == 0 && i == last_arr.length - 1
+                new_arr << 1
+            elsif i == 0 
+            i += 1
+        end
+        pas_triangle << new_arr
+    end
+    pas_triangle
 end
 
 # p pascals_triangle(5)
