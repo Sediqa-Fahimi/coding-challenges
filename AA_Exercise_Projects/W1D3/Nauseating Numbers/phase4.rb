@@ -58,6 +58,7 @@ end
 # p triangular_word?('sink')      # false
 
 def consecutive_collapse(arr)
+
     
 end
 
