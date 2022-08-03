@@ -85,13 +85,6 @@ end
 # p consecutive_collapse([5, 7, 9, 9])                  # [5, 7, 9, 9]
 # p consecutive_collapse([13, 11, 12, 12])              # []
 
-def prime?(num)
-    return false if num < 2
-    (2...num).each do |n|
-        return false if num % n == 0
-    end
-    true
-end
 def nearest_prime(num, n)
     nearest_prime = nil
     count = 0
