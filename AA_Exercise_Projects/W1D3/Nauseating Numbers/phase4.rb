@@ -1,3 +1,5 @@
+require 'byebug'
+
 def prime?(num)
     return false if num < 2
     (2...num).each do |n|
@@ -58,15 +60,27 @@ end
 # p triangular_word?('sink')      # false
 
 def consecutive_collapse(arr)
-
-    
+    collapsed = false
+    while !collapsed
+        collapsed = true
+        (0...arr.length-1).each do |i|
+            diff = arr[i] - arr[i+1]
+            if diff == 1 || diff == -1
+                arr.delete_at(i)
+                arr.delete_at(i)
+                collapsed = false
+                break
+            end
+        end
+    end
+    arr
 end
 
-# p consecutive_collapse([3, 4, 1])                     # [1]
-# p consecutive_collapse([1, 4, 3, 7])                  # [1, 7]
-# p consecutive_collapse([9, 8, 2])                     # [2]
-# p consecutive_collapse([9, 8, 4, 5, 6])               # [6]
-# p consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])   # [1, 9, 2]
-# p consecutive_collapse([3, 5, 6, 2, 1])               # [1]
-# p consecutive_collapse([5, 7, 9, 9])                  # [5, 7, 9, 9]
-# p consecutive_collapse([13, 11, 12, 12])              # []
+p consecutive_collapse([3, 4, 1])                     # [1]
+p consecutive_collapse([1, 4, 3, 7])                  # [1, 7]
+p consecutive_collapse([9, 8, 2])                     # [2]
+p consecutive_collapse([9, 8, 4, 5, 6])               # [6]
+p consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])   # [1, 9, 2]
+p consecutive_collapse([3, 5, 6, 2, 1])               # [1]
+p consecutive_collapse([5, 7, 9, 9])                  # [5, 7, 9, 9]
+p consecutive_collapse([13, 11, 12, 12])              # []
