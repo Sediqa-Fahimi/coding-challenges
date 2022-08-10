@@ -83,3 +83,40 @@ def max_tie_breaker(arr, proc, &prc)
     end
     final_ele
 end
+
+def vowels_count(word)
+    vowels = 'aeiou'
+    word.split("").count {|char| vowels.include?(char)}
+end
+def remove_vowels(word)
+    vowels = 'aeiou'
+    first_idx = 0
+    last_idx = 0
+    i = 0
+    while i < word.length
+        if vowels.include?(word[i])
+            first_idx = i   
+            break
+        end
+        i += 1
+    end
+    i = word.length - 1
+    while i >= 0
+        if vowels.include?(word[i])
+            last_idx = i   
+            break
+        end
+        i -= 1
+    end
+    word[first_idx..last_idx]
+end
+
+def silly_syllables(sent)
+    sent.split(" ").map do |word|
+        if vowels_count(word) < 2
+            word 
+        else
+            remove_vowels(word)
+        end
+    end.join(" ")
+end
