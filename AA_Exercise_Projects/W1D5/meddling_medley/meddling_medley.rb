@@ -196,5 +196,102 @@ end
 # p reverberate('Her family flew to France') # "Herer familyily flewew to Francefrance"
 
 def disjunct_select(arr, *procs)
-    
+    arr.select do |ele|
+        procs.any? {|proc| proc.call(ele)}
+    end
 end
+# longer_four = Proc.new { |s| s.length > 4 }
+# contains_o = Proc.new { |s| s.include?('o') }
+# starts_a = Proc.new { |s| s[0] == 'a' }
+
+# p disjunct_select(['ace', 'dog', 'apple', 'teeming', 'boot', 'zip'],
+#     longer_four,
+# ) # ["apple", "teeming"]
+
+# p disjunct_select(['ace', 'dog', 'apple', 'teeming', 'boot', 'zip'],
+#     longer_four,
+#     contains_o
+# ) # ["dog", "apple", "teeming", "boot"]
+
+# p disjunct_select(['ace', 'dog', 'apple', 'teeming', 'boot', 'zip'],
+#     longer_four,
+#     contains_o,
+#     starts_a
+# ) # ["ace", "dog", "apple", "teeming", "boot"]
+
+def vowels_indices(word)
+    vowels = 'aeiou'
+    indices = []
+    word.each_char.with_index do |char,i|
+        if vowels.include?(char)
+            indices << i    
+        end
+    end
+    indices
+end
+def alternating_vowel(sent)
+    words = sent.split(" ")
+    words.map.with_index do |word, i|
+        indices = vowels_indices(word)
+        if indices.empty?
+            word
+        elsif i.even?
+            word[0...indices.first] + word[indices.first+1..-1]
+        elsif i.odd?
+            word[0...indices.last] + word[indices.last+1..-1]
+        end
+    end.join(" ")
+end
+
+# p alternating_vowel('panthers are great animals') # "pnthers ar grat animls"
+# p alternating_vowel('running panthers are epic') # "rnning panthrs re epc"
+# p alternating_vowel('code properly please') # "cde proprly plase"
+# p alternating_vowel('my forecast predicts rain today') # "my forecst prdicts ran tday"
+def vowels_change(word)
+    vowels = 'aeiouAEIOU'
+    word.split("").map do |char|
+        if vowels.include?(char)
+            char + 'b' + char 
+        else
+            char
+        end
+    end.join("")
+end
+def silly_talk(sent)
+    vowels = 'aeiouAEIOU'
+    sent.split(" ").map do |word|
+        capitalized = (word == word.capitalize)
+        last_char = word[-1]
+        if vowels.include?(last_char)
+            capitalized ? (word + last_char).capitalize : word + last_char
+        else
+            new_word = vowels_change(word)
+            capitalized ? new_word.capitalize : new_word
+        end
+    end.join(" ")
+end
+# p silly_talk('Kids like cats and dogs') # "Kibids likee cabats aband dobogs"
+# p silly_talk('Stop that scooter') # "Stobop thabat scobooboteber"
+# p silly_talk('They can code') # "Thebey caban codee"
+# p silly_talk('He flew to Italy') # "Hee flebew too Ibitabaly"
+
+def compress(str)
+    new_str = ''
+    count = 1
+    str.each_char.with_index do |char, i|
+        if char == str[i+1]
+            count += 1
+        else  
+            if count > 1 
+                new_str += char + count.to_s 
+            else
+                new_str += char  
+            end
+            count = 1
+        end
+    end
+    new_str
+end
+# p compress('aabbbbc')   # "a2b4c"
+# p compress('boot')      # "bo2t"
+# p compress('xxxyxxzzzz')# "x3yx2z4"
