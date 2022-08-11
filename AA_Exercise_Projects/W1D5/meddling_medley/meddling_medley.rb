@@ -114,3 +114,87 @@ end
 
 #################     Phase 2    ######################
 
+def conjunct_select(arr, *procs)
+    arr.select do |ele|
+        procs.all? {|proc| proc.call(ele)}
+    end
+end
+
+# is_positive = Proc.new { |n| n > 0 }
+# is_odd = Proc.new { |n| n.odd? }
+# less_than_ten = Proc.new { |n| n < 10 }
+
+# p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive) # [4, 8, 11, 7, 13]
+# p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive, is_odd) # [11, 7, 13]
+# p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive, is_odd, less_than_ten) # [7]
+
+def pig_translate(word)
+    vowels = 'aeiouAEIOU'
+    return word + 'yay' if vowels.include?(word[0])
+    word.each_char.with_index do |char, i|
+        if vowels.include?(char)
+            new_word = word[i..-1] + word[0...i] + 'ay'
+            if word == word.capitalize
+                return new_word.capitalize
+            else
+                return new_word
+            end
+        end
+    end
+end
+def convert_pig_latin(sent)
+    sent.split(" ").map do |word|
+        if word.length < 3
+            word 
+        else
+            pig_translate(word)
+        end
+    end.join(" ")
+end
+# p convert_pig_latin('We like to eat bananas') # "We ikelay to eatyay ananasbay"
+# p convert_pig_latin('I cannot find the trash') # "I annotcay indfay ethay ashtray"
+# p convert_pig_latin('What an interesting problem') # "Atwhay an interestingyay oblempray"
+# p convert_pig_latin('Her family flew to France') # "Erhay amilyfay ewflay to Ancefray"
+# p convert_pig_latin('Our family flew to France') # "Ouryay amilyfay ewflay to Ancefray"
+
+def change_word(word)
+    capitalized = (word == word.capitalize)
+    vowels = 'aeiouAEIOU'
+    if vowels.include?(word[-1]) && capitalized
+        return (word * 2).capitalize
+    elsif vowels.include?(word[-1])
+        return word * 2
+    end
+
+    i = word.length - 1
+    while i >= 0
+        char = word[i]
+        if vowels.include?(char)
+            new_word = word + word[i..-1]
+            if word == word.capitalize
+                return new_word.capitalize
+            else
+                return new_word
+            end
+        end
+        i -= 1
+    end
+end
+def reverberate(sent)
+    sent.split(" ").map do |word|
+        if word.length < 3
+            word 
+        else
+            change_word(word)
+        end
+    end.join(" ")
+end
+
+# p reverberate('We like to go running fast') # "We likelike to go runninging fastast"
+# p reverberate('He cannot find the trash') # "He cannotot findind thethe trashash"
+# p reverberate('Pasta is my favorite dish') # "Pastapasta is my favoritefavorite dishish"
+# p reverberate('Her family flew to France') # "Herer familyily flewew to Francefrance"
+
+def disjunct_select(arr, *procs)
+    
+end
