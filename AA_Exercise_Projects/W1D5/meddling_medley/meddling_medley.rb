@@ -1,4 +1,5 @@
 ##############    Phase1    ##############
+
 def duos(str)
     count = 0
     i = 0
@@ -8,6 +9,7 @@ def duos(str)
     end
     count
 end
+
 # p duos('bootcamp')      # 1
 # p duos('wxxyzz')        # 2
 # p duos('hoooraay')      # 3
@@ -41,6 +43,7 @@ def hash_mapped(hash, proc, &prc)
     end
     mapped 
 end
+
 # double = Proc.new { |n| n * 2 }
 # p hash_mapped({'a'=>4, 'x'=>7, 'c'=>-3}, double) { |k| k.upcase + '!!' }
 # # {"A!!"=>8, "X!!"=>14, "C!!"=>-6}
@@ -54,6 +57,7 @@ def counted_characters(str)
     str.each_char {|char| counts[char] += 1}
     counts.keys.select {|k| counts[k] > 2}
 end
+
 # p counted_characters("that's alright folks") # ["t"]
 # p counted_characters("mississippi") # ["i", "s"]
 # p counted_characters("hot potato soup please") # ["o", "t", " ", "p"]
@@ -67,6 +71,7 @@ def triplet_true(str)
     end
     false
 end
+
 # p triplet_true('caaabb')        # true
 # p triplet_true('terrrrrible')   # true
 # p triplet_true('runninggg')     # true
@@ -108,6 +113,7 @@ def uncompress(str)
     end
     uncompressed.join("")
 end
+
 # p uncompress('a2b4c1') # 'aabbbbc'
 # p uncompress('b1o2t1') # 'boot'
 # p uncompress('x3y1x2z4') # 'xxxyxxzzzz'
@@ -142,6 +148,7 @@ def pig_translate(word)
         end
     end
 end
+
 def convert_pig_latin(sent)
     sent.split(" ").map do |word|
         if word.length < 3
@@ -151,6 +158,7 @@ def convert_pig_latin(sent)
         end
     end.join(" ")
 end
+
 # p convert_pig_latin('We like to eat bananas') # "We ikelay to eatyay ananasbay"
 # p convert_pig_latin('I cannot find the trash') # "I annotcay indfay ethay ashtray"
 # p convert_pig_latin('What an interesting problem') # "Atwhay an interestingyay oblempray"
@@ -180,6 +188,7 @@ def change_word(word)
         i -= 1
     end
 end
+
 def reverberate(sent)
     sent.split(" ").map do |word|
         if word.length < 3
@@ -200,6 +209,7 @@ def disjunct_select(arr, *procs)
         procs.any? {|proc| proc.call(ele)}
     end
 end
+
 # longer_four = Proc.new { |s| s.length > 4 }
 # contains_o = Proc.new { |s| s.include?('o') }
 # starts_a = Proc.new { |s| s[0] == 'a' }
@@ -229,6 +239,7 @@ def vowels_indices(word)
     end
     indices
 end
+
 def alternating_vowel(sent)
     words = sent.split(" ")
     words.map.with_index do |word, i|
@@ -247,6 +258,7 @@ end
 # p alternating_vowel('running panthers are epic') # "rnning panthrs re epc"
 # p alternating_vowel('code properly please') # "cde proprly plase"
 # p alternating_vowel('my forecast predicts rain today') # "my forecst prdicts ran tday"
+
 def vowels_change(word)
     vowels = 'aeiouAEIOU'
     word.split("").map do |char|
@@ -257,6 +269,7 @@ def vowels_change(word)
         end
     end.join("")
 end
+
 def silly_talk(sent)
     vowels = 'aeiouAEIOU'
     sent.split(" ").map do |word|
@@ -270,6 +283,7 @@ def silly_talk(sent)
         end
     end.join(" ")
 end
+
 # p silly_talk('Kids like cats and dogs') # "Kibids likee cabats aband dobogs"
 # p silly_talk('Stop that scooter') # "Stobop thabat scobooboteber"
 # p silly_talk('They can code') # "Thebey caban codee"
@@ -292,6 +306,7 @@ def compress(str)
     end
     new_str
 end
+
 # p compress('aabbbbc')   # "a2b4c"
 # p compress('boot')      # "bo2t"
 # p compress('xxxyxxzzzz')# "x3yx2z4"
