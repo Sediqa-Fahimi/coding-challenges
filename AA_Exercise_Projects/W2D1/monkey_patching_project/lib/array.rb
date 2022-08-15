@@ -22,5 +22,26 @@ class Array
     self.each {|ele| counts[ele] += 1}
     counts
   end
-
+  def my_count(value)
+    count = 0
+    self.each {|ele| count += 1 if ele == value}
+    count 
+  end
+  def my_index(value)
+    self.each_with_index do |ele, idx|
+        return idx if ele == value
+    end
+    nil
+  end
+  def my_uniq
+    hash = {}
+    self.each {|ele| hash[ele] = true if !hash.has_key?(ele)}
+    hash.keys
+  end
+  def my_transpose
+    range = self.length
+    (0...range).map do |i|
+        self.map {|sub_array| sub_array[i]}
+    end
+  end
 end
