@@ -5,14 +5,10 @@ class Game
     def initialize(n, *marks)
         @board = Board.new(n)
         @players = marks.map {|mark| HumanPlayer.new(mark)}
-        @current_player = @players[0]
+        @current_player = @players.first
     end
     def switch_turn
-        if @current_player == @player1
-            @current_player = @player2
-        else
-            @current_player = @player1
-        end
+        @current_player = @players.rotate!.first
     end
     def play
         while @board.empty_positions?
@@ -31,5 +27,5 @@ class Game
     end
 end
 
-game = Game.new(:O, :X)
+game = Game.new(4,:A,:B,:C,:D)
 game.play
