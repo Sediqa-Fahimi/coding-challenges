@@ -6,7 +6,23 @@
 #
 # all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])   # => ["action europe", "tear impromptu"]
 def all_vowel_pairs(words)
-
+    pairs = []
+    words.each_with_index do |word1, i1|
+        words.each_with_index do |word2, i2|
+            if i2 > i1 && complete_vowels?(word1,word2)
+                pairs << word1 + " " + word2
+            end
+        end
+    end
+    pairs
+end
+def complete_vowels?(str1, str2)
+    vowels = 'aeiou'
+    combined = str1 + str2
+    vowels.each_char do |char|
+        return false if !combined.include?(char)
+    end
+    true
 end
 
 
@@ -18,7 +34,10 @@ end
 # composite?(9)     # => true
 # composite?(13)    # => false
 def composite?(num)
-
+    (2...num).each do |n|
+        return true if num % n == 0
+    end
+    false
 end
 
 
@@ -32,7 +51,11 @@ end
 # find_bigrams("the theater is empty", ["cy", "em", "ty", "ea", "oo"])  # => ["em", "ty", "ea"]
 # find_bigrams("to the moon and back", ["ck", "oo", "ha", "at"])        # => ["ck", "oo"]
 def find_bigrams(str, bigrams)
-
+    result = []
+    bigrams.each do |bigram|
+        result << bigram if str.include?(bigram)
+    end
+    result
 end
 
 class Hash
@@ -50,7 +73,14 @@ class Hash
     # hash_2.my_select { |k, v| k + 1 == v }      # => {10=>11, 5=>6, 7=>8})
     # hash_2.my_select                            # => {4=>4}
     def my_select(&prc)
-
+        prc ||= Proc.new {|k,v| k == v} 
+        result = {}
+        self.each do |k,v|
+            if prc.call(k,v)
+                result[k] = v
+            end
+        end 
+        result
     end
 end
 
@@ -64,7 +94,22 @@ class String
     # "cats".substrings     # => ["c", "ca", "cat", "cats", "a", "at", "ats", "t", "ts", "s"]
     # "cats".substrings(2)  # => ["ca", "at", "ts"]
     def substrings(length = nil)
-
+        substrings = []
+        i = 0
+        while i < self.length
+            j = i  
+            while j < self.length
+                sub = self[i..j]
+                if length.nil?
+                    substrings << sub
+                elsif sub.length == length
+                    substrings << sub
+                end
+                j += 1
+            end
+            i += 1
+        end
+        substrings
     end
 
 
@@ -78,6 +123,14 @@ class String
     # "bootcamp".caesar_cipher(2) #=> "dqqvecor"
     # "zebra".caesar_cipher(4)    #=> "difve"
     def caesar_cipher(num)
-
+        alpha = ('a'..'z').to_a
+        shifted = ""
+        self.each_char do |char|
+            oldidx = alpha.index(char)
+            newidx = (oldidx + num) % alpha.length
+            newchar = alpha[newidx]
+            shifted += newchar
+        end
+        shifted
     end
 end
