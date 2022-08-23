@@ -25,7 +25,11 @@ end
 class Hash
     # Write a method, Hash#inverse, that returns a new hash where the key-value pairs are swapped
     def inverse
-
+        swapped = {}
+        self.each do |k,v|
+            swapped[v] = k
+        end
+        swapped
     end
 end
 
@@ -33,7 +37,13 @@ end
 class Array
     # Write a method, Array#pair_sum_count, that takes in a target number returns the number of pairs of elements that sum to the given target
     def pair_sum_count(num)
-
+        count = 0
+        self.each_with_index do |ele1,i1|
+            self.each_with_index do |ele2, i2|
+                count += 1 if i2 > i1 && ele1 + ele2 == num
+            end
+        end
+        count 
     end
 
     # Write a method, Array#bubble_sort, that takes in an optional proc argument.
@@ -50,6 +60,17 @@ class Array
     #
     # This should remind you of the spaceship operator! Convenient :)
     def bubble_sort(&prc)
-
+        prc ||= Proc.new {|v1,v2| v1 <=> v2}
+        sorted = false
+        while !sorted
+            sorted = true
+            (0...self.length-1).each do |i|
+                if prc.call(self[i], self[i+1]) == 1
+                    self[i], self[i+1] = self[i+1], self[i]
+                    sorted = false
+                end
+            end
+        end
+        self
     end
 end
