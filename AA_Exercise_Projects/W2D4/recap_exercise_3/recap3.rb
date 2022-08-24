@@ -1,3 +1,5 @@
+require 'byebug'
+
 def no_dupes?(arr)
     elements = Hash.new(0)
     arr.each {|ele| elements[ele] += 1}
@@ -190,10 +192,42 @@ def multiply_rec(a, b)
     return a if b == 1
     a + multiply(a, b - 1)
 end
-p multiply(3, 5)        # => 15
-p multiply(5, 3)        # => 15
-p multiply(2, 4)        # => 8
-p multiply(0, 10)       # => 0
-p multiply(-3, -6)      # => 18
-p multiply(3, -6)       # => -18
-p multiply(-3, 6)       # => -18
+# p multiply(3, 5)        # => 15
+# p multiply(5, 3)        # => 15
+# p multiply(2, 4)        # => 8
+# p multiply(0, 10)       # => 0
+# p multiply(-3, -6)      # => 18
+# p multiply(3, -6)       # => -18
+# p multiply(-3, 6)       # => -18
+
+def lucas_sequence(num)
+    seq = []
+    i = 0
+    while i < num
+        # if i == 0
+        #     seq[0] = 2
+        # elsif i == 1
+        #     seq[1] = 1
+        # else
+        #     seq[i] = seq[i-1] + seq[i-2]
+        # end
+        seq[i] = lucas_num(i + 1)
+        i += 1
+    end
+    seq
+end
+def lucas_num(num)
+    return 2 if num == 1
+    return 1 if num == 2
+    lucas_num(num - 1) + lucas_num(num - 2)
+end
+# p lucas_sequence(0)   # => []
+# p lucas_sequence(1)   # => [2]    
+# p lucas_sequence(2)   # => [2, 1]
+# p lucas_sequence(3)   # => [2, 1, 3]
+# p lucas_sequence(6)   # => [2, 1, 3, 4, 7, 11]
+# p lucas_sequence(8)   # => [2, 1, 3, 4, 7, 11, 18, 29]
+
+def prime_factorization(num)
+    
+end
