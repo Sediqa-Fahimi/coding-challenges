@@ -229,5 +229,45 @@ end
 # p lucas_sequence(8)   # => [2, 1, 3, 4, 7, 11, 18, 29]
 
 def prime_factorization(num)
-    
+    return [num] if is_prime?(num)
+    p_factors = prime_factors(num)[0]
+    product = prime_factors(num)[1]
+    result = num / product
+    (p_factors + prime_factorization(result)).sort
 end
+def prime_factors(num)
+    factors = (2..num).select {|n| is_prime?(n) && num % n == 0}
+    product = 1
+    factors.each {|factor| product *= factor}
+    [factors,product]
+end
+def is_prime?(num)
+    return false if num < 2
+    (2...num).each do |n|
+        return false if num % n == 0
+    end
+    true
+end
+
+# 12 => 1,2,3,4,6,12
+#         2,3 = 2 * 3 = 6 => 12/6 = 2
+#         2.3.2 => 2.2.3
+# 24 => 1,2,3,4,6,8,12,24
+#         2,3 = 2.3 = 6 => 24/6 = 4 => 1,2,4 => 2 => 4/2 = 2 ==> 2.2
+#         2.3.2.2 => 2.2.2.3
+
+# 25 => 1,5,25 
+#         5 => 25/5 = 5
+#         5.5
+
+# 60 => 1,2,3,5,6,10,12,20,30,60
+#       2,3,5 => 2.3.5 = 30 => 60/30 = 2
+#       2.3.5.2 => 2.2.3.5
+
+p prime_factorization(12)     # => [2, 2, 3]
+p prime_factorization(24)     # => [2, 2, 2, 3]
+p prime_factorization(25)     # => [5, 5]
+p prime_factorization(60)     # => [2, 2, 3, 5]
+p prime_factorization(7)      # => [7]
+p prime_factorization(11)     # => [11]
+p prime_factorization(2017)   # => [2017]
