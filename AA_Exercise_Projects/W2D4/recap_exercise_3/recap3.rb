@@ -128,8 +128,72 @@ def vowels_count(str)
     vowels_list.unshift(vowels_list.pop)
     return [vowels_list, indices]
 end
-p vowel_rotate('computer')      # => "cempotur"
-p vowel_rotate('oranges')       # => "erongas"
-p vowel_rotate('headphones')    # => "heedphanos"
-p vowel_rotate('bootcamp')      # => "baotcomp"
-p vowel_rotate('awesome')       # => "ewasemo"
+# p vowel_rotate('computer')      # => "cempotur"
+# p vowel_rotate('oranges')       # => "erongas"
+# p vowel_rotate('headphones')    # => "heedphanos"
+# p vowel_rotate('bootcamp')      # => "baotcomp"
+# p vowel_rotate('awesome')       # => "ewasemo"
+class String
+    def select(&prc)
+        return "" if prc.nil?
+        new_str = ""
+        self.each_char do |char|
+            new_str += char if prc.call(char)
+        end
+        new_str
+    end
+    def map!(&prc)
+        self.each_char.with_index do |char,i|
+            self[i] = prc.call(char,i)
+        end 
+        self
+    end
+end
+
+# p "app academy".select { |ch| !"aeiou".include?(ch) }   # => "pp cdmy"
+# p "HELLOworld".select { |ch| ch == ch.upcase }          # => "HELLO"
+# p "HELLOworld".select          # => ""
+
+# word_1 = "Lovelace"
+# word_1.map! do |ch| 
+#     if ch == 'e'
+#         '3'
+#     elsif ch == 'a'
+#         '4'
+#     else
+#         ch
+#     end
+# end
+# p word_1        # => "Lov3l4c3"
+
+# word_2 = "Dijkstra"
+# word_2.map! do |ch, i|
+#     if i.even?
+#         ch.upcase
+#     else
+#         ch.downcase
+#     end
+# end
+# p word_2        # => "DiJkStRa"
+
+def multiply(a,b)
+    result = multiply_rec(a.abs, b.abs)
+    if a < 0 && b < 0
+        return result
+    elsif a < 0 || b < 0
+        return -(result)
+    else
+        return result
+    end
+end
+def multiply_rec(a, b)
+    return a if b == 1
+    a + multiply(a, b - 1)
+end
+p multiply(3, 5)        # => 15
+p multiply(5, 3)        # => 15
+p multiply(2, 4)        # => 8
+p multiply(0, 10)       # => 0
+p multiply(-3, -6)      # => 18
+p multiply(3, -6)       # => -18
+p multiply(-3, 6)       # => -18
