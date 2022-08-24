@@ -58,6 +58,78 @@ end
 # p longest_streak('aaabbb')      # => 'bbb'
 # p longest_streak('abc')         # => 'c'
 
-def bi_prime?(num)
-    
+def is_prime?(num)
+    return false if num < 2
+    (2...num).each do |n|
+        return false if num % n == 0
+    end
+    true
 end
+def bi_prime?(num)
+    (2...num).each do |n|
+        return true if is_prime?(n) && is_prime?(num / n) && ((num/n) * n == num)
+    end
+    false
+end
+# p bi_prime?(14)   # => true
+# p bi_prime?(22)   # => true
+# p bi_prime?(25)   # => true
+# p bi_prime?(94)   # => true
+# p bi_prime?(24)   # => false
+# p bi_prime?(64)   # => false
+
+def vigenere_cipher(str, arr)
+    keys = stretch_arr(arr, str.length)
+    result = ""
+    str.each_char.with_index do |char, i|
+        result += cipher(char,keys[i])
+    end
+    result
+end
+def stretch_arr(arr,len)
+    i = 0
+    while arr.length < len
+        arr << arr[i]
+        i += 1
+    end
+    arr
+end
+def cipher(char,key)
+    alpha = ('a'..'z').to_a
+    old_idx = alpha.index(char)
+    new_idx = (old_idx + key) % alpha.length
+    alpha[new_idx]
+end
+
+# p vigenere_cipher("toerrishuman", [1])        # => "upfssjtivnbo"
+# p vigenere_cipher("toerrishuman", [1, 2])     # => "uqftsktjvobp"
+# p vigenere_cipher("toerrishuman", [1, 2, 3])  # => "uqhstltjxncq"
+# p vigenere_cipher("zebra", [3, 0])            # => "ceerd"
+# p vigenere_cipher("yawn", [5, 1])             # => "dbbo"
+
+def vowel_rotate(str)
+    vowels_list = vowels_count(str)[0]
+    vowels_idx = vowels_count(str)[1]
+    vowels_idx.each_with_index do |v_idx, i|
+        str[v_idx] = vowels_list[i]
+    end
+    str
+end
+def vowels_count(str)
+    vowels = 'aeiou'
+    indices = []
+    vowels_list = []
+    str.each_char.with_index do |char,i|
+        if vowels.include?(char)
+            indices << i  
+            vowels_list << char 
+        end
+    end
+    vowels_list.unshift(vowels_list.pop)
+    return [vowels_list, indices]
+end
+p vowel_rotate('computer')      # => "cempotur"
+p vowel_rotate('oranges')       # => "erongas"
+p vowel_rotate('headphones')    # => "heedphanos"
+p vowel_rotate('bootcamp')      # => "baotcomp"
+p vowel_rotate('awesome')       # => "ewasemo"
