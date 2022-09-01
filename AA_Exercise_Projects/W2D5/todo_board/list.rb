@@ -2,7 +2,6 @@ require_relative 'item'
 
 class List
     attr_accessor :label
-    attr_reader :items
     def initialize(label)
         @label = label
         @items = []
@@ -25,12 +24,19 @@ class List
             true
         end
     end
+    def swap(index_1, index_2)
+        if valid_index?(index_1) && valid_index?(index_2)
+            @items[index_1], @items[index_2] = @items[index_2], @items[index_1]
+            true
+        else
+            false
+        end
+    end
+    def [](index)
+        valid_index?(index) ? @items[index] : nil 
+    end
+    def priority
+        @items.first
+    end
 end
 
-# mylist = List.new('importants')
-# p mylist.add_item('laundry', '2019-12-03')
-# p mylist.add_item('laundry2', '2019-12-04')
-# p mylist.items
-# p mylist.valid_index?(-1)
-# p mylist.valid_index?(0)
-# p mylist.valid_index?(2)
