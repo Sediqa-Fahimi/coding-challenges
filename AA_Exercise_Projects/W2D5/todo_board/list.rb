@@ -38,5 +38,37 @@ class List
     def priority
         @items.first
     end
+    def print
+        puts '-------------'
+        puts @label
+        puts '-------------'
+        puts "Index | Item            | Deadline  "
+        puts "-----------------------------------------"
+        @items.each_with_index do |item, idx|
+            puts "#{idx}    | #{item.title}       | #{item.deadline}"
+        end
+        puts "-----------------------------------------"
+    end
+    def print_full_item(index)
+        if valid_index?(index)
+            item = @items[index]
+            puts "-----------------------------------------"
+            puts "#{item.title}             #{item.deadline}"
+            puts "#{item.description}"
+            puts "-----------------------------------------"
+        end
+    end
+    def print_priority
+        print_full_item(0)
+    end
 end
+
+my_list = List.new('Groceries')
+
+p my_list.add_item('cheese', '2019-10-25', 'Get American and Feta for good measure.')
+p my_list.add_item('toothpaste', '2019-10-25')
+p my_list.add_item('shampoo', '2019-10-24')
+p my_list.add_item('candy', '2019-10-31', '4 bags should be enough')
+my_list.print
+my_list.print_priority
 
