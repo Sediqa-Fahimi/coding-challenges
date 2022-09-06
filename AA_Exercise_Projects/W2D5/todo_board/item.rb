@@ -26,6 +26,7 @@ class Item
             raise 'YYYY-MM-DD is correct format'
         end
         @description = description
+        @done = false
     end
     def deadline=(new_deadline)
         if Item.valid_date?(new_deadline)
@@ -34,6 +35,12 @@ class Item
             raise 'correct format is YYYY-MM-DD'
         end
     end
-
+    def toggle
+        if @done == true
+            @done = false
+        else
+            @done = true
+        end
+    end
 end
 

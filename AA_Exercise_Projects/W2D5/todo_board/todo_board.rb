@@ -33,6 +33,12 @@ class TodoBoard
             end
         when "quit"
             return false
+        when "toggle"
+            num_args = args.map {|arg| arg.to_i}
+            @list.toggle_item(*num_args)
+        when "rm"
+            num_args = args.map {|arg| arg.to_i}
+            @list.remove_item(*num_args)
         else
             print "Sorry, that command is not recognized."
         end
