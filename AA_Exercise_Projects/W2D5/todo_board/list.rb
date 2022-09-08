@@ -75,6 +75,7 @@ class List
         end
     end
     def down(index, amount = 1)
+
         if valid_index?(index)
             i = 0
             while i < amount && index < @items.length - 1
@@ -86,24 +87,32 @@ class List
         else
             return false
         end
+        
     end
     def sort_by_date!
+
         @items.sort_by! {|item| item.deadline }
+
     end
     def toggle_item(index)
+
         @items[index].toggle
+
     end
     def remove_item(index)
+
         if valid_index?(index)
             @list.delete_at(index)
             true
         else    
             false
         end
+
     end
     def purge
+
         @list.each_with_index do |item, idx|
-            
+
         end
     end
 end
