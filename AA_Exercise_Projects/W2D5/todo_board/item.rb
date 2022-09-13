@@ -1,7 +1,7 @@
 
 class Item
     attr_accessor :title, :description
-    attr_reader :deadline
+    attr_reader :deadline, :done
     def self.valid_date?(date)
         parts = date.split("-")
         year = parts[0]
@@ -23,7 +23,7 @@ class Item
         if Item.valid_date?(deadline)
             @deadline = deadline
         else
-            raise 'YYYY-MM-DD is correct format'
+            raise 'The correct date format is YYYY-MM-DD'
         end
         @description = description
         @done = false
@@ -32,7 +32,7 @@ class Item
         if Item.valid_date?(new_deadline)
             @deadline = new_deadline
         else
-            raise 'correct format is YYYY-MM-DD'
+            raise 'The correct date format is YYYY-MM-DD'
         end
     end
     def toggle

@@ -39,6 +39,8 @@ class TodoBoard
         when "rm"
             num_args = args.map {|arg| arg.to_i}
             @list.remove_item(*num_args)
+        when "purge"
+            @list.purge
         else
             print "Sorry, that command is not recognized."
         end

@@ -1,3 +1,4 @@
+# require 'byebug'
 require_relative 'item'
 
 class List
@@ -45,7 +46,7 @@ class List
         puts "Index | Item            | Deadline  | Done  "
         puts "---------------------------------------------"
         @items.each_with_index do |item, idx|
-            puts "#{idx}    | #{item.title}       | #{item.deadline} | #{item.done} "
+            puts "#{idx}    | #{item.title}       | #{item.deadline} | #{item.done ? "yes" : "no"} "
         end
         puts "---------------------------------------------"
     end
@@ -54,7 +55,7 @@ class List
             item = @items[index]
             puts "-----------------------------------------"
             puts "#{item.title}             #{item.deadline}"
-            puts "#{item.description}       #{item.done}"
+            puts "#{item.description}       #{item.done ? "yes" : "no"}"
             puts "-----------------------------------------"
         end
     end
@@ -87,7 +88,7 @@ class List
         else
             return false
         end
-        
+
     end
     def sort_by_date!
 
@@ -102,7 +103,7 @@ class List
     def remove_item(index)
 
         if valid_index?(index)
-            @list.delete_at(index)
+            @items.delete_at(index)
             true
         else    
             false
@@ -110,18 +111,16 @@ class List
 
     end
     def purge
-
-        @list.each_with_index do |item, idx|
-
+        i = 0
+        while i < @items.length
+            if @items[i].done
+                @items.delete_at(i)
+            else
+                i += 1
+            end
         end
     end
 end
 
-# l = List.new('Groceries')
-# l.add_item('cheese', '2019-10-25')
-# l.add_item('toothpaste', '2019-10-25')
-# l.add_item('shampoo', '2019-10-24')
-# l.add_item('candy', '2019-10-31')
-# l.print
-# l.sort_by_date!
-# l.print
+
+
