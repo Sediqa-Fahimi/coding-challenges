@@ -49,7 +49,28 @@ class Array
         end
     end
     def my_rotate(num = 1)
-        
+        rotated = []
+        self.each_with_index do |ele, i|
+            new_idx = (i - num) % self.length
+            rotated[new_idx] = ele
+        end
+        rotated
+    end
+    def my_join(separator = "")
+        str = ""
+        self.each_with_index do |char,i|
+            if i == self.length - 1
+                str += char
+            else
+                str += char + separator
+            end
+        end
+        str
+    end
+    def my_reverse
+        reversed = []
+        self.each {|ele| reversed.unshift(ele)}
+        reversed
     end
 end
 # return_value = [1, 2, 3].my_each do |num|
@@ -91,3 +112,16 @@ end
 # c = [10, 11, 12]
 # d = [13, 14, 15]
 # p [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_rotate         #=> ["b", "c", "d", "a"]
+# p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
+
+# a = [ "a", "b", "c", "d" ]
+# p a.my_join         # => "abcd"
+# p a.my_join("$")    # => "a$b$c$d"
+
+# p [ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+# p [ 1 ].my_reverse               #=> [1]
