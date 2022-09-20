@@ -2,13 +2,20 @@ require_relative "card"
 
 class Board
     attr_accessor :grid
-    def initialize(*cards)
+    def initialize(cards)
         @grid = Array.new(4) {Array.new(4)}
-        populate(cards)
+        populate(cards.shuffle)
+    end
+    def [](pos)
+        row, col = pos
+        @grid[row][col]
+    end
+    def []=(pos,value)
+        row, col = pos
+        @grid[row][col] = value
     end
     def empty(pos)
-        row = pos[0]
-        col = pos[1]
+        row, col = pos
         @grid[row][col] == nil
     end
     def populate(cards)
@@ -25,13 +32,19 @@ class Board
     def render
         p "   0   1   2   3"
         @grid.map.with_index do |row,i|
-            p "#{i}  #{row.map {|col| col.display_card}.join(" | ")}"
+            p "#{i}  #{row.map {|card| card.display_card}.join(" | ")}"
         end
     end
+    
     def won?
-        @grid.all? {|row| row.all? {|col| col.face_up}}
+        @grid.all? {|row| row.all? {|card| card.face_up}}
     end
-    def reveal
-
+    def reveal(guessed_pos)
+        row, col = guessed_pos
+        card = @grid[row][col]
+        if !card.face_up
+            card.reveal
+            card
+        end
     end
 end
