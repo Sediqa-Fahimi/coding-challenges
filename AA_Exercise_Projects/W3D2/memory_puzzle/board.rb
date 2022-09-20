@@ -13,7 +13,6 @@ class Board
     end
     def populate(cards)
         cards.each do |card|
-            2.times do 
                 row = (0..3).to_a.sample
                 col = (0..3).to_a.sample
                 while !empty([row,col])
@@ -21,17 +20,16 @@ class Board
                     col = (0..3).to_a.sample
                 end
                 @grid[row][col] = card
-            end
         end
     end
     def render
-        p "  0  1  2  3"
+        p "   0   1   2   3"
         @grid.map.with_index do |row,i|
             p "#{i}  #{row.map {|col| col.display_card}.join(" | ")}"
         end
     end
     def won?
-
+        @grid.all? {|row| row.all? {|col| col.face_up}}
     end
     def reveal
 
