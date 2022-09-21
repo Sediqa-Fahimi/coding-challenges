@@ -1,3 +1,5 @@
+require 'byebug'
+
 def range(start, ending)
     return [] if start >= ending
     return [start] if start + 1 == ending
@@ -121,7 +123,33 @@ def quick_sort(arr)
     quick_sort(left) + [pivot] + quick_sort(right)
 end
 
-p quick_sort([4,1,7,3,6,4])
-p quick_sort([])
-p quick_sort([3])
-p quick_sort([100,3,-4,0,-200,300])
+# p quick_sort([4,1,7,3,6,4])
+# p quick_sort([])
+# p quick_sort([3])
+# p quick_sort([100,3,-4,0,-200,300])
+
+def merge_sort(arr)
+    return arr if arr.length <= 1
+    mid_idx = arr.length / 2
+    left = arr[0...mid_idx]
+    right = arr[mid_idx..-1]
+    sorted_left = merge_sort(left)
+    sorted_right = merge_sort(right)
+    merge(sorted_left, sorted_right)
+end
+def merge(left, right)
+    sorted = []
+    while !left.empty? && !right.empty?
+        if left.first < right.first
+            sorted.push(left.shift)
+        else
+            sorted.push(right.shift)
+        end
+    end
+    sorted + left + right
+end
+
+# p merge_sort([4,1,7,3,6,4])
+# p merge_sort([])
+# p merge_sort([3])
+# p merge_sort([100,3,-4,0,-200,300])
