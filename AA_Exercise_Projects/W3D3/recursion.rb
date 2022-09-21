@@ -84,3 +84,44 @@ end
 # p fibonacci_rec(4) #=> [0,1,1,2]
 # p fibonacci_rec(5) #=> [0,1,1,2,3]
 # p fibonacci_rec(9) #=> [0,1,1,2,3,5,8,13,21]
+
+def bsearch(arr, target)
+    return nil if arr.empty?
+    mid_idx = arr.length / 2
+    left = arr[0...mid_idx]
+    right = arr[mid_idx+1..-1]
+    if arr[mid_idx] == target
+        return mid_idx
+    elsif arr[mid_idx] < target
+        result = bsearch(right, target)
+        if result.nil?
+            nil
+        else
+            mid_idx + 1 + result
+        end
+    elsif arr[mid_idx] > target
+        bsearch(left, target)
+    end
+end
+
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 7) # => nil
+
+def quick_sort(arr)
+    return arr if arr.length <= 1
+    pivot = arr.first
+    left = arr.drop(1).select {|ele| ele < pivot}
+    right = arr.drop(1).select {|ele| ele >= pivot}
+    quick_sort(left) + [pivot] + quick_sort(right)
+end
+
+p quick_sort([4,1,7,3,6,4])
+p quick_sort([])
+p quick_sort([3])
+p quick_sort([100,3,-4,0,-200,300])
