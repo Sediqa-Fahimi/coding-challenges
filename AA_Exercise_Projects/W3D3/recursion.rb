@@ -161,8 +161,31 @@ def subsets(arr)
     copy.each {|sub_arr| sub_arr.push(arr[-1])}
     subs + copy
 end
-p subsets([]) # => [[]]
-p subsets([1]) # => [[], [1]]
-p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
-p subsets([1, 2, 3])
+# p subsets([]) # => [[]]
+# p subsets([1]) # => [[], [1]]
+# p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+# p subsets([1, 2, 3])
 # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+
+def permutations(arr)
+    return [arr] if arr.length <= 1
+    first = arr.shift
+    perms = permutations(arr)
+    all_permutations = []
+
+    perms.each do |perm|
+        (0..perm.length).each do |i|
+            all_permutations <<  perm[0...i] + [first] + perm[i..-1] 
+        end
+    end
+
+    all_permutations
+end
+# p permutations([]) # => [[]]
+# p permutations([1]) # => [[1]]
+# p permutations([1, 2]) # => [[1, 2], [2, 1]]
+# p permutations([1, 2, 3])   # =>   [[1, 2, 3], [1, 3, 2],
+                            #       [2, 1, 3], [2, 3, 1],
+                            #       [3, 1, 2], [3, 2, 1]]
+
+
