@@ -156,10 +156,13 @@ end
 
 def subsets(arr)
     return [arr] if arr.empty?
-    subsets(arr[0..-2]).push([arr.last]).push(arr)
+    subs = subsets(arr[0..-2])
+    copy = subs.map {|sub_arr| sub_arr.map{|el| el}}
+    copy.each {|sub_arr| sub_arr.push(arr[-1])}
+    subs + copy
 end
 p subsets([]) # => [[]]
 p subsets([1]) # => [[], [1]]
 p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
 p subsets([1, 2, 3])
-# # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+# => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
