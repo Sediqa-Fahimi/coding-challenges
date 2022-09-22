@@ -153,3 +153,13 @@ end
 # p merge_sort([])
 # p merge_sort([3])
 # p merge_sort([100,3,-4,0,-200,300])
+
+def subsets(arr)
+    return [arr] if arr.empty?
+    subsets(arr[0..-2]).push([arr.last]).push(arr)
+end
+p subsets([]) # => [[]]
+p subsets([1]) # => [[], [1]]
+p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+p subsets([1, 2, 3])
+# # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
