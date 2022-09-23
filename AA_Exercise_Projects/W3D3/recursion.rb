@@ -188,4 +188,34 @@ end
                             #       [2, 1, 3], [2, 3, 1],
                             #       [3, 1, 2], [3, 2, 1]]
 
+# Iteratively:
+# def greedy_make_change(amount, coins = [25, 10, 5, 1])
+#     changes = []
+#     i = 0
+#     while amount > 0
+#         coin = coins[i]
+#         num_coins = amount / coin
+#         remainder = amount % coin
+#         num_coins.times {changes << coin}
+#         amount = remainder
+#         i += 1
+#     end
+#     changes
+# end
+
+# Recursively:
+def greedy_make_change(amount, coins = [25,10,5,1])
+    return [] if amount == 0
+    changes = []
+    coin = coins.shift
+    num_coins = amount / coin
+    remainder = amount % coin
+    num_coins.times {changes << coin}
+    changes.push(*greedy_make_change(remainder, coins))
+    changes
+end
+
+p greedy_make_change(39, [25,10,5,1]) 
+p greedy_make_change(14, [10, 7, 1])
+
 
