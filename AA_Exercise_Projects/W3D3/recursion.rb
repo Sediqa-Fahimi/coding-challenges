@@ -155,30 +155,30 @@ end
 # p merge_sort([100,3,-4,0,-200,300])
 
 def subsets(arr)
-    return [arr] if arr.empty?
+    return [[]] if arr.empty?
     subs = subsets(arr[0..-2])
-    copy = subs.map {|sub_arr| sub_arr.map{|el| el}}
-    copy.each {|sub_arr| sub_arr.push(arr[-1])}
+    copy = subs.map {|sub_arr| sub_arr.map {|ele| ele}}
+    copy.each do |sub_arr|
+        sub_arr << arr[-1]
+    end
     subs + copy
 end
 # p subsets([]) # => [[]]
 # p subsets([1]) # => [[], [1]]
 # p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
 # p subsets([1, 2, 3])
-# => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+#=> [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 
 def permutations(arr)
     return [arr] if arr.length <= 1
     first = arr.shift
     perms = permutations(arr)
     all_permutations = []
-
     perms.each do |perm|
         (0..perm.length).each do |i|
-            all_permutations <<  perm[0...i] + [first] + perm[i..-1] 
+           all_permutations << perm[0...i] + [first] + perm[i..-1]
         end
     end
-
     all_permutations
 end
 # p permutations([]) # => [[]]
