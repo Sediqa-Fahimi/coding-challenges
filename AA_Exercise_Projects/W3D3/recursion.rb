@@ -215,7 +215,24 @@ def greedy_make_change(amount, coins = [25,10,5,1])
     changes
 end
 
-p greedy_make_change(39, [25,10,5,1]) 
-p greedy_make_change(14, [10, 7, 1])
+# p greedy_make_change(39, [25,10,5,1]) 
+# p greedy_make_change(14, [10, 7, 1])
 
+def make_better_change(amount, coins = [25,10,5,1])
+    return [] if amount == 0
+    least_changes = nil
+    coins.each do |coin|
+        next if coin > amount
+
+        possile_change = make_better_change(amount - coin, coins)
+        change = [coin] + possile_change
+        if least_changes.nil? || change.length < least_changes.length
+            least_changes = change
+        end
+    end
+    least_changes
+end
+
+# p make_better_change(39, [25,10,5,1]) 
+# p make_better_change(14, [10, 7, 1])
 
