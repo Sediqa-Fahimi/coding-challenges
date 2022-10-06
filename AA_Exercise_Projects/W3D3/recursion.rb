@@ -224,10 +224,10 @@ def make_better_change(amount, coins = [25,10,5,1])
     coins.each do |coin|
         next if coin > amount
 
-        possile_change = make_better_change(amount - coin, coins)
-        change = [coin] + possile_change
-        if least_changes.nil? || change.length < least_changes.length
-            least_changes = change
+        change_for_rest = make_better_change(amount - coin, coins)
+        possible_change = [coin] + change_for_rest
+        if least_changes.nil? || possible_change.length < least_changes.length
+            least_changes = possible_change
         end
     end
     least_changes
