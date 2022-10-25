@@ -32,8 +32,11 @@
 
 // O(n) time | O(1) space
 var maxProfit = function(prices) {
+
     let min = Infinity;
+
     let maxProfit = 0;
+
     for(let i = 0 ; i < prices.length; i++){
         if(prices[i] < min){
             min = prices[i];
@@ -41,5 +44,7 @@ var maxProfit = function(prices) {
             maxProfit = prices[i] - min;
         }
     }
+    
     return maxProfit;
+
 };
