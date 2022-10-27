@@ -1,8 +1,11 @@
 //O(n) time | O(1) space 
 function longestPeak(array) {
+
   let longestPeakLength = 0;
 	let i = 1;
+
 	while(i < array.length - 1){
+
 		const isPeak = array[i] > array[i-1] && array[i] > array[i+1];
 		if(!isPeak){
 			i++;
@@ -21,5 +24,7 @@ function longestPeak(array) {
 		longestPeakLength = Math.max(longestPeakLength, currentPeakLength);
 		i = rightIdx;
 	}
+	
 	return longestPeakLength;
+
 }
