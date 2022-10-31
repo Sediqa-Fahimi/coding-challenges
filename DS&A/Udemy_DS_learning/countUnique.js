@@ -1,34 +1,35 @@
 //O(N) time | O(1) space
-// function countUniqueValues(sortedArr){
-//     if(sortedArr.length === 0) return 0;
-
-//     let start = 0;
-//     let end = 1;
-//     let count = 0;
-//     while(end < sortedArr.length){
-//         while(sortedArr[start] === sortedArr[end]){
-//             start += 1;
-//             end += 1;
-//         }
-//         count += 1;
-//         start += 1;
-//         end += 1;
-//     }
-//     return count + 1;
-// }
-
-//O(N) time || O(1) space
 function countUniqueValues(sortedArr){
     if(sortedArr.length === 0) return 0;
-    let i = 0;
-    for (let j = 1; j < sortedArr.length; j++){
-        if(sortedArr[i] !== sortedArr[j]){
-            i++;
-            sortedArr[i] = sortedArr[j];
+
+    let start = 0;
+    let end = 1;
+    let count = 0;
+    while(end < sortedArr.length){
+        while(sortedArr[start] === sortedArr[end]){
+            start += 1;
+            end += 1;
         }
+        count += 1;
+        start += 1;
+        end += 1;
     }
-    return i + 1;
+    return count + 1;
 }
+
+//O(N) time || O(1) space 
+// function countUniqueValues(sortedArr){ // This solution changes the actual array. 
+//                                         // Thats why I prefer the above solution with the counter var.
+//     if(sortedArr.length === 0) return 0;
+//     let i = 0;
+//     for (let j = 1; j < sortedArr.length; j++){
+//         if(sortedArr[i] !== sortedArr[j]){
+//             i++;
+//             sortedArr[i] = sortedArr[j];
+//         }
+//     }
+//     return i + 1;
+// }
 
 //O(N) time | O(N) space
 // function countUniqueValues(sortedArr){
