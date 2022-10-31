@@ -3,7 +3,7 @@
 //     SinglyLinkedListNode next;
 // }
 
-//O() time || O(1) space
+//O(NlogN) time || O(1) space
 function createLinkedList(head) {
     // Write your code here
     const dummyHead = new SinglyLinkedListNode();
