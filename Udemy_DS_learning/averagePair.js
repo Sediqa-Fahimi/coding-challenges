@@ -7,13 +7,9 @@ function averagePair(arr,targetAvg){
   let right = arr.length - 1;
   while(left < right){
       let currentAvg = (arr[left] + arr[right]) / 2.0;
-      if(currentAvg < targetAvg){
-          left += 1;
-      }else if (currentAvg === targetAvg){
-          return true;
-      }else if(currentAvg > targetAvg){
-          right -= 1;
-      }
+      if(currentAvg < targetAvg) left++;
+      else if (currentAvg === targetAvg) return true;
+      else right--;
   }
   return false;
 }
