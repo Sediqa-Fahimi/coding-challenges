@@ -15,6 +15,7 @@ function same(arr1, arr2){
         if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]) return false;
     }
     return true;
+    
 }
 
 //O(N^2) time | O(N) space
