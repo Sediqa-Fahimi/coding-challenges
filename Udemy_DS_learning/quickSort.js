@@ -1,4 +1,4 @@
-// Best & Average: O(NlogN) time , Worst: O(N^2) time | O(logN) space
+// Best & Average: O(NlogN) time , Worst(when arr is already sorted): O(N^2) time | O(logN) space
 function quickSort(arr, left = 0, right = arr.length - 1){
     if(left < right){
         let pivotIdx = pivot(arr, left, right);
