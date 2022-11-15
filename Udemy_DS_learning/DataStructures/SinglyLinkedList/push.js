@@ -10,7 +10,7 @@ class SinglyLinkedList{
         this.tail = null;
         this.length = 0;
     }
-    push(value){
+    push(value){ // O(1) time | O(1) space
         let newNode = new Node(value);
         if(!this.head){
             this.head = newNode;
