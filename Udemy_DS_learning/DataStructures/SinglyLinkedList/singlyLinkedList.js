@@ -22,6 +22,23 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
+    pop(){  // O(N) time | O(1) space , N: length of Linked List
+        if(this.length === 0) return undefined;
+        let current  = this.head;
+        let pre = null;
+        while(current.next){
+            pre = current;
+            current = current.next;
+        }
+        this.tail = pre;
+        if(this.tail) {
+            this.tail.next = null;
+        }else{
+            this.head = null;
+        }
+        this.length--;  
+        return current;
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -30,4 +47,11 @@ console.log(list.push("there"));
 console.log(list.push("how"));
 console.log(list.push("are"));
 console.log(list.push("you"));
+
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
 
