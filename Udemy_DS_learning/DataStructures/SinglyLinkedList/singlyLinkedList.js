@@ -39,7 +39,16 @@ class SinglyLinkedList{
         this.length--;  
         return current;
     }
-    unshift(value){ 
+    shift(){ 
+        if(!this.head) return undefined;
+        let removed = this.head;
+        this.head = this.head.next;
+        if(this.length === 1) this.tail = null;
+        removed.next = null;
+        this.length--;
+        return removed;
+    }
+    unshift(value){ // O(1) time | O(1) space
         let newNode = new Node(value);
         if(!this.head){
             this.head = newNode;
@@ -60,12 +69,20 @@ console.log(list.push("how"));
 console.log(list.push("are"));
 console.log(list.push("you"));
 
-console.log(list.pop());
-console.log(list.pop());
-console.log(list.pop());
-console.log(list.pop());
-console.log(list.pop());
-console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.pop());
 
 console.log(list.unshift("omg"));
+
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
 
