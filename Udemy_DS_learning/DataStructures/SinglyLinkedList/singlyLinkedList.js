@@ -39,10 +39,10 @@ class SinglyLinkedList{
         this.length--;  
         return current;
     }
-    shift(){ 
+    shift(){  // O(1) time | O(1) space
         if(!this.head) return undefined;
         let removed = this.head;
-        this.head = this.head.next;
+        this.head = removed.next;
         if(this.length === 1) this.tail = null;
         removed.next = null;
         this.length--;
@@ -60,6 +60,37 @@ class SinglyLinkedList{
         this.length++;
         return this;
     }
+    get(index){ // O(N) time | O(1) space
+        if(index < 0 || index >= this.length) return null;
+        if(!this.head) return null;
+        let current = this.head;
+        let counter = 0;
+        while(counter < index){
+            current = current.next;
+            counter++;
+        }
+        return current;
+    }
+    set(index, value){ // O(N) time | O(1) space
+        targetNode = this.get(index);
+        if(targetNode){
+            targetNode.val = value;
+            return true;
+        }else{
+            return false;
+        }
+    }
+    insert(value, index){ // O(N) time | O(1) space
+        if(index < 0 || index > this.length) return false;
+        if(index === 0) return !!this.unshift(value);
+        if(index === this.length) return !!this.push(value);
+        let newNode = new Node(value);
+        let preNode = this.get(index - 1);
+        newNode.next = preNode.next;
+        preNode.next = newNode;
+        this.length++;
+        return true;
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -70,19 +101,20 @@ console.log(list.push("are"));
 console.log(list.push("you"));
 
 // console.log(list.pop());
-// console.log(list.pop());
-// console.log(list.pop());
-// console.log(list.pop());
-// console.log(list.pop());
-// console.log(list.pop());
 
-console.log(list.unshift("omg"));
 
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
+// console.log(list.unshift("omg"));
+
+// console.log(list.shift());
+
+// console.log(list.get(0));
+// console.log(list.get(1));
+console.log(list.insert('nice', -1));
+console.log(list.insert('to', 0));
+console.log(list.insert('meet', 6));
+console.log(list.insert('you', 12));
+console.log(list.insert('hey', 2));
+console.log(list);
+
+
 
