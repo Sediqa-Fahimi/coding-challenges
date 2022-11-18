@@ -1,4 +1,3 @@
-const { timeStamp } = require("console");
 
 class Node{
     constructor(val){
