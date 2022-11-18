@@ -92,19 +92,22 @@ class DoublyLinkedList{
         return node;
     }
     set(value, index){ //O(N) time | O(1) space
-        if(index < 0 || index >= this.length) return false;
-        if(!this.head) return false;
         let node = this.get(index);
-        node.val = value;
-        return true;
+        if(node !== null){
+            node.val = value;
+            return true;
+        }
+        return false;
     }
-    insert(val, index){ //
+    insert(val, index){ // O(N) time | O(1) space
         if(index < 0 || index > this.length) return false;
         if(index === 0) return !!this.unshift(val);
         if(index === this.length) return !!this.push(val);
+
         let newNode = new Node(val);
         let prev = this.get(index - 1);
         let node = prev.next;
+
         newNode.next = node;
         node.prev = newNode;
         newNode.prev = prev;
@@ -112,10 +115,19 @@ class DoublyLinkedList{
         this.length++;
         return true;
     }
-    remove(index){ //
+    remove(index){ //O(N) time | O(1) space
         if(index < 0 || index >= this.length) return null;
         if(!this.head) return null;
-
+        if(index === 0) return this.shift();
+        if(index === this.length - 1) return this.pop();
+        
+        let node = this.get(index);
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        node.next = null;
+        node.prev = null;
+        this.length--;
+        return node;
     }
 }
 
