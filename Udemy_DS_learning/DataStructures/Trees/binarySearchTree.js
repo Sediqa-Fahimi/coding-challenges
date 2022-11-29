@@ -52,6 +52,18 @@ class BinarySearchTree{ // Insert: O(log n) - Searching: O(log n) , Worst case: 
         }
         return false;
     }
+    bfs(){  
+        const queue = [this.root];
+        const visited = [];
+        let node;
+        while(queue.length){
+            node = queue.shift();
+            visited.push(node.value);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+        return visited;
+    }
 }
 
 let bst = new BinarySearchTree();
@@ -61,8 +73,10 @@ bst.insert(4);
 bst.insert(1);
 bst.insert(6);
 bst.insert(9);
-console.log(bst.insert(3));
+bst.insert(3);
 
-console.log(bst.find(2));
-console.log(bst.find(4));
-console.log(bst.find(9));
+// console.log(bst.find(2));
+// console.log(bst.find(4));
+// console.log(bst.find(9));
+
+console.log(bst.bfs());
