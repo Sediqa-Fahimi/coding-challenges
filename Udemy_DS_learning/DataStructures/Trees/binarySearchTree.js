@@ -64,10 +64,43 @@ class BinarySearchTree{ // Insert: O(log n) - Searching: O(log n) , Worst case: 
         }
         return visited;
     }
+    dfsPreOrder(){ 
+        let visited = [];
+        let current = this.root;
+        function traverse(node){
+            visited.push(node.value);
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+        }
+        traverse(current);
+        return visited;
+    }
+    dfsPostOrder(){
+        let visited = [];
+        let current = this.root;
+        function traverse(node){
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+            visited.push(node.value);
+        }
+        traverse(current);
+        return visited;
+    }
+    dfsInOrder(){
+        let visited = [];
+        let current = this.root;
+        function traverse(node){
+            node.left && traverse(node.left);
+            visited.push(node.value);
+            node.right && traverse(node.right);
+        }
+        traverse(current);
+        return visited;
+    }
 }
 
 let bst = new BinarySearchTree();
-console.log(bst);
+// console.log(bst);
 
 bst.insert(4);
 bst.insert(1);
@@ -79,4 +112,7 @@ bst.insert(3);
 // console.log(bst.find(4));
 // console.log(bst.find(9));
 
-console.log(bst.bfs());
+// console.log(bst.bfs());
+console.log(bst.dfsPreOrder());
+console.log(bst.dfsPostOrder());
+console.log(bst.dfsInOrder());
