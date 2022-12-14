@@ -1,4 +1,4 @@
-class MaxBinaryHeap{
+class MaxBinaryHeap{ // O(Log N) time (Insertion & Deletion)| O(N) space - N: # of Nodes
     constructor(){
         this.values = [];
     }
