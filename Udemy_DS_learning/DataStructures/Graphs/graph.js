@@ -35,12 +35,42 @@ class Graph{
         }
         delete this.adjacencyList[vertex];
     }
+    dfsRecursive(start){
+        const results = [];
+        const visited = {};
+        const adjacencyList = this.adjacencyList;
+        (function dfs(vertex){
+            if(!vertex) return null;
+            visited[vertex] = true;
+            results.push(vertex);
+            adjacencyList[vertex].forEach( neighbor => {
+                if(!visited[neighbor]) return dfs(neighbor);
+            });
+        })(start);
+        return results;
+    }
 }
 
-// let g = new Graph();
-// g.addVertex('Tokyo');
-// g.addVertex('Berlin');
-// g.addEdge('Tokyo','Berlin');
-// console.log(g);
-// g.removeVertex('Tokyo');
-// console.log(g);
+let g = new Graph();
+
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+
+g.addEdge("A","B");
+g.addEdge("A","C");
+g.addEdge("B","D");
+g.addEdge("C","E");
+g.addEdge("D","E");
+g.addEdge("D","F");
+g.addEdge("E","F");
+
+
+console.log(g.dfsRecursive("A"));
+
+// console.log(g.dfsIterative("A"));
+
+// console.log(g.bfsGraph("A"));
