@@ -49,6 +49,50 @@ class Graph{
         })(start);
         return results;
     }
+    dfsIterative(start){
+        const results = [];
+        const visited = {};
+        let stack = [start];
+        
+        visited[start] = true;
+        let currentVertex;
+
+        while(stack.length){
+            currentVertex = stack.pop();
+            results.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach( neighbor => {
+                if(!visited[neighbor]){
+                    visited[neighbor] = true;
+                    stack.push(neighbor);
+                }
+            })
+
+        }
+        return results;
+    }
+    bfsGraph(start){
+        const results = [];
+        const visited = {};
+        let queue = [start];
+        
+        visited[start] = true;
+        let currentVertex;
+
+        while(queue.length){
+            currentVertex = queue.shift();
+            results.push(currentVertex);
+
+            this.adjacencyList[currentVertex].forEach( neighbor => {
+                if(!visited[neighbor]){
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            })
+
+        }
+        return results;
+    }
 }
 
 let g = new Graph();
@@ -64,13 +108,13 @@ g.addEdge("A","B");
 g.addEdge("A","C");
 g.addEdge("B","D");
 g.addEdge("C","E");
-g.addEdge("D","E");
+g.addEdge("D","E"); 
 g.addEdge("D","F");
 g.addEdge("E","F");
 
 
 console.log(g.dfsRecursive("A"));
 
-// console.log(g.dfsIterative("A"));
+console.log(g.dfsIterative("A"));
 
-// console.log(g.bfsGraph("A"));
+console.log(g.bfsGraph("A"));
