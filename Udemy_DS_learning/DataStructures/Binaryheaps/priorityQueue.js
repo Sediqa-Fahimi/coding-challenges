@@ -6,7 +6,7 @@ class Node{
 }
 
 // O(Log N) time (Insertion & Deletion)| O(N) space - N: # of Nodes
-class priorityQueue{ // This Priority Queue is implemented using Min Binary Heap.
+class PriorityQueue{ // This Priority Queue is implemented using Min Binary Heap.
     constructor(){
         this.values = [];
     }
