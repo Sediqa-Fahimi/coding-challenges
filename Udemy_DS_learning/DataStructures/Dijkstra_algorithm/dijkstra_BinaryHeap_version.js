@@ -114,15 +114,15 @@ class WeightedGraph{
                     //find neighboring node
                     let nextNode = this.adjacencyList[smallest][neighbor];
                     //calculate new distance to neighboring node
-                    let candidate = distances[smallest] + nextNode.weight;
+                    let newDistance = distances[smallest] + nextNode.weight;
                     let nextNeighbor = nextNode.node;
-                    if(candidate < distances[nextNeighbor]){
+                    if(newDistance < distances[nextNeighbor]){
                         //updating new smallest distance to neighbor
-                        distances[nextNeighbor] = candidate;
+                        distances[nextNeighbor] = newDistance;
                         //updating prevoius - How we got to neighbor
                         previous[nextNeighbor] = smallest;
                         //enqueue in priority queue with new priority
-                        nodes.enqueue(nextNeighbor, candidate);
+                        nodes.enqueue(nextNeighbor, newDistance);
                     }
                 }
             }
@@ -133,22 +133,26 @@ class WeightedGraph{
 
 
 
-let graph = new WeightedGraph();
+let g = new WeightedGraph();
 
-graph.addVertex("A");
-graph.addVertex("B");
-graph.addVertex("C");
-graph.addVertex("D");
-graph.addVertex("E");
-graph.addVertex("F");
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+g.addVertex("G");
 
-graph.addEdge("A","B", 4);
-graph.addEdge("A","C", 2);
-graph.addEdge("B","E", 3);
-graph.addEdge("C","D", 2);
-graph.addEdge("C","F", 4);
-graph.addEdge("D","E", 3);
-graph.addEdge("D","F", 1);
-graph.addEdge("E","F", 1);
+g.addEdge("A","C", 3);
+g.addEdge("A","F", 2);
+g.addEdge("C","F", 2);
+g.addEdge("C","D", 4);
+g.addEdge("C","E", 1);
+g.addEdge("F","E", 3);
+g.addEdge("F","B", 6);
+g.addEdge("F","G", 5);
+g.addEdge("E","B", 2);
+g.addEdge("D","B", 1);
+g.addEdge("G","B", 2);
 
-console.log(graph.dijkstra("A", "E"));
+console.log(g.dijkstra("A", "B"));
