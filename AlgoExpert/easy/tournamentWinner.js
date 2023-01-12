@@ -19,3 +19,28 @@ function tournamentWinner(competitions, results) {
 	}
   return maxKey;
 }
+
+//O(n) time | O(k) space - k: # of teams, n: # of competitions
+function tournamentWinner(competitions, results) {
+	let bestTeam = '';
+	const scores = {[bestTeam]: 0};
+
+	for(let i = 0; i < competitions.length; i++){
+		let result = results[i];
+		const [homeTeam, awayTeam] = competitions[i];
+		
+		const winningTeam = result === 1 ? homeTeam : awayTeam;
+		
+		updateScores(winningTeam, 3, scores);
+
+		if(scores[winningTeam] > scores[bestTeam]){
+			bestTeam = winningTeam;
+		}
+	}
+	return bestTeam;
+}
+
+function updateScores(team, score, scores){
+	if(!(team in scores)) scores[team] = 0;
+	scores[team] += score;
+}
