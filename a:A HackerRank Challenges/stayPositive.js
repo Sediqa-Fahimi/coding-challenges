@@ -1,3 +1,4 @@
+//O(N) time | O(1) space
 function minStart(arr){
     let first = true;
     let runningSum = 0;
@@ -18,4 +19,4 @@ function minStart(arr){
 
 console.log(minStart([-5,4,-2,3,1,-1,-6,-1,0,5])); // 8
 console.log(minStart([-5,4,-2,3,1])); // 6
-console.log(minStart([-2,-3,0,7,-8,1,5])); // 7
+console.log(minStart([-2,-3,0,7,-8,-11,5])); // 18
