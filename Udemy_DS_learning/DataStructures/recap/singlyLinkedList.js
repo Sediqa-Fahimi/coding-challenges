@@ -80,7 +80,25 @@ class SinglyLinkedList{
         this.length++;
         return true;
     }
-    rotate(n){
+    remove(index){ // O(N) time | O(1) space
+        if(!this.head) return undefined;
+        if(index < 0 || index >= this.length) return undefined;
+        let node;
+        if(index === this.length - 1) return this.pop();
+        if(index === 0){
+            node = this.head;
+            this.head = this.head.next;
+            node.next = null;
+        }else{
+            let prevNode = this.get(index - 1);
+            node = prevNode.next;
+            prevNode.next = prevNode.next.next;
+            node.next = null;
+        }
+        this.length--;
+        return node;
+    }
+    rotate(n){ // O(N) time | O(1) space
         let index;
         if(n < 0){
             index = Math.abs(n) % this.length;
@@ -100,5 +118,22 @@ class SinglyLinkedList{
         }
         return this;
     }
+    reverse(){ // O(N) time | O(1) space
+        let head = this.head;
+        this.head = this.tail;
+        this.tail = head;
+
+        let current = this.tail;
+        let prev = null;
+        let next;
+        for(let i = 0; i < this.length; i++){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return this;
+    }
 }
+
 
