@@ -1,21 +1,21 @@
 
 import './App.css';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useReducer} from 'react';
 
 function App() {
-  const [state, setState] = useState("ON");
+  const [state, setState] = useReducer(
+    (state)=> state === "ON" ? "OFF" : "ON"
+    ,"ON");
 
   useEffect(()=> {
-    console.log(`I am ${state}.`)
+    console.log(`I am ${state === "ON" ? "OFF" : "ON"}.`)
   },[state]);
 
-  const handleClick = () =>{
-    state === "ON" ? setState("OFF") : setState("ON");
-  }
+  
   return (
     <div className="App">
       <h1>Turn me {state}</h1>
-      <button onClick={handleClick}>{state}</button>
+      <button onClick={setState}>{state}</button>
     </div>
   );
 }
