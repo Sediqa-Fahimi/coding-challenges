@@ -10,3 +10,9 @@ left join (
 on s.student_id = grouped.student_id AND sub.subject_name = grouped.subject_name
 order by s.student_id, sub.subject_name;
 
+-- Write a solution to report the name and bonus amount of each employee with a bonus less than 1000.
+select name, bonus
+from Employee
+left join Bonus
+on Employee.empId = Bonus.empId
+where bonus < 1000 or bonus is null;
